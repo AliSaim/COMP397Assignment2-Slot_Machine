@@ -80,8 +80,14 @@
     <Content Include="assets\images\spin.png" />
     <Content Include="assets\images\stadium.png" />
     <Content Include="assets\images\whistle.png" />
+    <Content Include="config\constants.js" />
+    <Content Include="objects\button.js" />
+    <Content Include="objects\label.js" />
     <Content Include="packages.config" />
     <Content Include="assets\images\atlas.json" />
+    <Content Include="config\constants.js.map" />
+    <Content Include="objects\button.js.map" />
+    <Content Include="objects\label.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -107,6 +113,9 @@
     <Folder Include="assets\fonts\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="config\constants.ts" />
+    <TypeScriptCompile Include="objects\button.ts" />
+    <TypeScriptCompile Include="objects\label.ts" />
     <TypeScriptCompile Include="Scripts\game.ts" />
     <TypeScriptCompile Include="Scripts\typings\createjs-lib\createjs-lib.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\easeljs\easeljs.d.ts" />

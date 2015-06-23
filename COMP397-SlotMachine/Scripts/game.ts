@@ -3,6 +3,10 @@
 /// <reference path="typings/tweenjs/tweenjs.d.ts" />
 /// <reference path="typings/soundjs/soundjs.d.ts" />
 /// <reference path="typings/preloadjs/preloadjs.d.ts" />
+/// <reference path="../config/constants.ts" />
+/// <reference path="../objects/label.ts" />
+/// <reference path="../objects/button.ts" />
+
 
 
 // Game Framework Variables
@@ -15,9 +19,63 @@ var manifest = [
     { id: "clicked", src: "assets/audio/clicked.wav" }
 ];
 
+var atlas = {
+
+    "images": [
+        "assets/images/atlas.png"
+    ],
+
+    "frames": [
+        [2, 2, 80, 112, 0, 0, 0],
+        [84, 2, 80, 105, 0, 0, 0],
+        [166, 2, 95, 97, 0, 0, 0],
+        [263, 2, 93, 97, 0, -1, -1],
+        [358, 2, 95, 96, 0, 0, 0],
+        [455, 2, 80, 88, 0, 0, 0],
+        [537, 2, 80, 85, 0, 0, 0],
+        [619, 2, 80, 84, 0, 0, 0],
+        [701, 2, 80, 78, 0, 0, 0],
+        [783, 2, 76, 76, 0, -2, -4],
+        [861, 2, 65, 67, 0, 0, 0],
+        [928, 2, 65, 67, 0, 0, 0],
+        [995, 2, 65, 67, 0, 0, 0],
+        [1062, 2, 65, 66, 0, 0, 0],
+        [1129, 2, 65, 66, 0, 0, 0],
+        [1196, 2, 65, 66, 0, 0, 0],
+        [1263, 2, 65, 66, 0, 0, 0],
+        [1330, 2, 65, 66, 0, 0, 0],
+        [1397, 2, 80, 62, 0, 0, 0]
+    ],
+
+    "animations": {
+        "777": [6],
+        "cup": [0],
+        "flag": [1],
+        "resetbutton": [2],
+        "powerbutton": [3],
+        "spin": [4],
+        "stadium": [5],
+        "blank": [7],
+        "whistle": [8],
+        "ball": [9],
+        "bet100": [10],
+        "bet50": [11],
+        "bet500": [12],
+        "bet1": [13],
+        "bet10": [14],
+        "bet2": [15],
+        "bet25": [16],
+        "bet5": [17],
+        "cards": [18]
+    }
+};
+
 
 // Game Variables
 var background: createjs.Bitmap;
+var textureAtlas: createjs.SpriteSheet;
+
+var spinButton: objects.Button;
 
 
 
@@ -28,6 +86,11 @@ function preload() {
     // event listinener handler triggers hwne assets are completely loaded
     assets.on("complete", init, this);
     assets.loadManifest(manifest);
+
+    //Load Texture Atlas
+    textureAtlas = new createjs.SpriteSheet(atlas);
+
+
     //setup staistics object
     setupStats();
 
@@ -68,7 +131,7 @@ function preload() {
     }
 
     //callback function that allows me to respond to button click events
-    function pinkButtonClicked(event: createjs.MouseEvent) {
+    function spinButtonClicked(event: createjs.MouseEvent) {
         createjs.Sound.play("clicked");
     }
     //callback function that cahnges the alpha transparency of the button
@@ -81,6 +144,12 @@ function preload() {
         //add in slot matchine 
         background = new createjs.Bitmap(assets.getResult("background"));
         stage.addChild(background);
+
+
+        //add spinButton srpite
+        spinButton = new objects.Button("spin", 225, 334, false);
+        stage.addChild(spinButton);
+        spinButton.on("click", spinButtonClicked, this);
 
     }
 }
