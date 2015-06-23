@@ -14,6 +14,8 @@ var stats;
 var assets;
 var manifest = [
     { id: "background", src: "assets/images/slotmachine.png" },
+    { id: "bet5", src: "assets/images/bet5.png" },
+    { id: "bet50", src: "assets/images/bet50.png" },
     { id: "clicked", src: "assets/audio/clicked.wav" }
 ];
 var atlas = {
@@ -24,13 +26,13 @@ var atlas = {
         [2, 2, 80, 112, 0, 0, 0],
         [84, 2, 80, 105, 0, 0, 0],
         [166, 2, 95, 97, 0, 0, 0],
-        [263, 2, 93, 97, 0, -1, -1],
+        [263, 2, 93, 97, 0, 0, 0],
         [358, 2, 95, 96, 0, 0, 0],
         [455, 2, 80, 88, 0, 0, 0],
         [537, 2, 80, 85, 0, 0, 0],
         [619, 2, 80, 84, 0, 0, 0],
         [701, 2, 80, 78, 0, 0, 0],
-        [783, 2, 76, 76, 0, -2, -4],
+        [783, 2, 76, 76, 0, 0, 0],
         [861, 2, 65, 67, 0, 0, 0],
         [928, 2, 65, 67, 0, 0, 0],
         [995, 2, 65, 67, 0, 0, 0],
@@ -53,13 +55,11 @@ var atlas = {
         "whistle": [8],
         "ball": [9],
         "bet100": [10],
-        "bet50": [11],
         "bet500": [12],
         "bet1": [13],
         "bet10": [14],
         "bet2": [15],
         "bet25": [16],
-        "bet5": [17],
         "cards": [18]
     }
 };
@@ -67,9 +67,19 @@ var atlas = {
 var background;
 var textureAtlas;
 var spinButton;
+//value of the  each whee's index will be stored in here
 var wheelOneImage;
 var wheelTwoImage;
-objects.Images;
+var wheelThreeImage;
+//Betings buttons
+var bet1;
+var bet2;
+var bet5;
+var bet10;
+var bet25;
+var bet50;
+var bet100;
+var bet500;
 /* Tally Variables */
 var grapes = 0;
 var bananas = 0;
@@ -176,6 +186,9 @@ e.g. Bar - Orange - Banana */
         //remove last images from the canvas
         stage.removeAllChildren();
         //call main function to add back the background
+        //add bet5 button
+        bet5 = new objects.Button("bet5", 80, 410, false);
+        stage.addChild(bet5);
         main();
         spinResult = Reels();
         fruits = spinResult[0] + " - " + spinResult[1] + " - " + spinResult[2];
@@ -262,6 +275,48 @@ e.g. Bar - Orange - Banana */
             wheelTwoImage = new objects.Images("777", 300, 130, false);
             stage.addChild(wheelTwoImage);
         }
+        //_______________________________________________________
+        //_______________________________________________________
+        if (spinResult[2] == "blank") {
+            //"blank" is represent white image"
+            wheelThreeImage = new objects.Images("blank", 420, 130, false);
+            stage.addChild(wheelThreeImage);
+        }
+        if (spinResult[2] == "Grapes") {
+            //Grapes will be represented with cup
+            wheelThreeImage = new objects.Images("cup", 420, 130, false);
+            stage.addChild(wheelThreeImage);
+        }
+        if (spinResult[2] == "Banana") {
+            //Banana will represent flag
+            wheelThreeImage = new objects.Images("flag", 420, 130, false);
+            stage.addChild(wheelThreeImage);
+        }
+        if (spinResult[2] == "Orange") {
+            //Orange will represent stadium
+            wheelThreeImage = new objects.Images("stadium", 420, 130, false);
+            stage.addChild(wheelThreeImage);
+        }
+        if (spinResult[2] == "Cherry") {
+            //Cherry will represenet "whistle" LOL
+            wheelThreeImage = new objects.Images("whistle", 420, 130, false);
+            stage.addChild(wheelThreeImage);
+        }
+        if (spinResult[2] == "Bar") {
+            // Bar will be represenent as cards
+            wheelTwoImage = new objects.Images("cards", 420, 130, false);
+            stage.addChild(wheelTwoImage);
+        }
+        if (spinResult[2] == "Bell") {
+            //Soccer ball will represent bell
+            wheelThreeImage = new objects.Images("ball", 420, 130, false);
+            stage.addChild(wheelThreeImage);
+        }
+        if (spinResult[2] == "Seven") {
+            //Sevens will be represent with soccerball with 7s
+            wheelThreeImage = new objects.Images("777", 420, 130, false);
+            stage.addChild(wheelThreeImage);
+        }
     }
     //callback function that cahnges the alpha transparency of the button
     //mouseover event
@@ -274,6 +329,27 @@ e.g. Bar - Orange - Banana */
         spinButton = new objects.Button("spin", 510, 242, false);
         stage.addChild(spinButton);
         spinButton.on("click", spinButtonClicked, this);
+        //add bet1 button
+        bet1 = new objects.Button("bet1", 80, 340, false);
+        stage.addChild(bet1);
+        //add bet2 button
+        bet2 = new objects.Button("bet2", 150, 340, false);
+        stage.addChild(bet2);
+        //add bet10 button
+        bet10 = new objects.Button("bet10", 150, 410, false);
+        stage.addChild(bet10);
+        //add bet25 button
+        bet25 = new objects.Button("bet25", 400, 310, false);
+        stage.addChild(bet25);
+        //add bet50 button
+        bet50 = new objects.Button("bet50", 470, 310, false);
+        stage.addChild(bet50);
+        //add bet100 button
+        bet100 = new objects.Button("bet100", 400, 400, false);
+        stage.addChild(bet100);
+        //add bet1 button
+        bet500 = new objects.Button("bet500", 470, 400, false);
+        stage.addChild(bet500);
     }
 }
 //# sourceMappingURL=game.js.map
