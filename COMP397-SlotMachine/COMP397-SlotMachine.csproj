@@ -115,6 +115,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="config\constants.ts" />
     <TypeScriptCompile Include="objects\button.ts" />
+    <TypeScriptCompile Include="objects\images.ts" />
     <TypeScriptCompile Include="objects\label.ts" />
     <TypeScriptCompile Include="Scripts\game.ts" />
     <TypeScriptCompile Include="Scripts\typings\createjs-lib\createjs-lib.d.ts" />

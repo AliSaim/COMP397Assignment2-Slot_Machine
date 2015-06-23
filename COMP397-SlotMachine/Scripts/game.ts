@@ -5,6 +5,7 @@
 /// <reference path="typings/preloadjs/preloadjs.d.ts" />
 /// <reference path="../config/constants.ts" />
 /// <reference path="../objects/label.ts" />
+/// <reference path="../objects/images.ts" />
 /// <reference path="../objects/button.ts" />
 
 
@@ -13,6 +14,7 @@
 var canvas = document.getElementById("canvas");
 var stage: createjs.Stage;
 var stats: Stats;
+
 var assets: createjs.LoadQueue;
 var manifest = [
     { id: "background", src: "assets/images/slotmachine.png" },
@@ -74,9 +76,24 @@ var atlas = {
 // Game Variables
 var background: createjs.Bitmap;
 var textureAtlas: createjs.SpriteSheet;
-
 var spinButton: objects.Button;
 
+var wheelOneImage: objects.Images;
+var wheelTwoImage; objects.Images;
+
+
+/* Tally Variables */
+var grapes = 0;
+var bananas = 0;
+var oranges = 0;
+var cherries = 0;
+var bars = 0;
+var bells = 0;
+var sevens = 0;
+var blanks = 0;
+
+var spinResult;
+var fruits = "";
 
 
 //preloader Function
@@ -130,9 +147,185 @@ function preload() {
         stage.update();
     }
 
+
+
+    /* Utility function to check if a value falls within a range of bounds */
+    function checkRange(value, lowerBounds, upperBounds) {
+        if (value >= lowerBounds && value <= upperBounds) {
+            return value;
+        }
+        else {
+            return !value;
+        }
+    }
+
+
+    /* When this function is called it determines the betLine results.
+e.g. Bar - Orange - Banana */
+    function Reels() {
+        var betLine = [" ", " ", " "];
+        var outCome = [0, 0, 0];
+
+        for (var spin = 0; spin < 3; spin++) {
+            outCome[spin] = Math.floor((Math.random() * 65) + 1);
+            switch (outCome[spin]) {
+                case checkRange(outCome[spin], 1, 27):  // 41.5% probability
+                    betLine[spin] = "blank";
+                    blanks++;
+                    break;
+                case checkRange(outCome[spin], 28, 37): // 15.4% probability
+                    betLine[spin] = "Grapes";
+                    grapes++;
+                    break;
+                case checkRange(outCome[spin], 38, 46): // 13.8% probability
+                    betLine[spin] = "Banana";
+                    bananas++;
+                    break;
+                case checkRange(outCome[spin], 47, 54): // 12.3% probability
+                    betLine[spin] = "Orange";
+                    oranges++;
+                    break;
+                case checkRange(outCome[spin], 55, 59): //  7.7% probability
+                    betLine[spin] = "Cherry";
+                    cherries++;
+                    break;
+                case checkRange(outCome[spin], 60, 62): //  4.6% probability
+                    betLine[spin] = "Bar";
+                    bars++;
+                    break;
+                case checkRange(outCome[spin], 63, 64): //  3.1% probability
+                    betLine[spin] = "Bell";
+                    bells++;
+                    break;
+                case checkRange(outCome[spin], 65, 65): //  1.5% probability
+                    betLine[spin] = "Seven";
+                    sevens++;
+                    break;
+            }
+        }
+        return betLine;
+    }
+
+
+
+
+
+
     //callback function that allows me to respond to button click events
     function spinButtonClicked(event: createjs.MouseEvent) {
         createjs.Sound.play("clicked");
+
+        //remove last images from the canvas
+        stage.removeAllChildren();
+        //call main function to add back the background
+        main();
+
+        spinResult = Reels();
+        fruits = spinResult[0] + " - " + spinResult[1] + " - " + spinResult[2];
+
+        console.log(fruits);
+
+        if (spinResult[0] == "blank")
+        {
+            //"blank" is represent white image"
+            wheelOneImage = new objects.Images("blank", 180, 130, false)
+            stage.addChild(wheelOneImage);
+        }
+        
+        if (spinResult[0] == "Grapes") {
+            //Grapes will be represented with cup
+            wheelOneImage = new objects.Images("cup", 180, 130, false)
+            stage.addChild(wheelOneImage);
+        }
+
+        if (spinResult[0] == "Banana") {
+            //Banana will represent flag
+            wheelOneImage = new objects.Images("flag", 180, 130, false)
+            stage.addChild(wheelOneImage);
+        }
+
+        if (spinResult[0] == "Orange") {
+            //Orange will represent stadium
+            wheelOneImage = new objects.Images("stadium", 180, 130, false)
+            stage.addChild(wheelOneImage);
+        }
+
+        if (spinResult[0] == "Cherry") {
+            //Cherry will represenet "whistle" LOL
+            wheelOneImage = new objects.Images("whistle", 180, 130, false)
+            stage.addChild(wheelOneImage);
+        }
+        if (spinResult[0] == "Bar") {
+            // Bar will be represenent as cards
+            wheelOneImage = new objects.Images("cards", 180, 130, false)
+            stage.addChild(wheelOneImage);
+        }
+        if (spinResult[0] == "Bell") {
+            //Soccer ball will represent bell
+            wheelOneImage = new objects.Images("ball", 180, 130, false)
+            stage.addChild(wheelOneImage);
+        }
+
+        if (spinResult[0] == "Seven") {
+            //Sevens will be represent with soccerball with 7s
+            wheelOneImage = new objects.Images("777", 180, 130, false)
+            stage.addChild(wheelOneImage);
+        }
+        //_______________________________________________________
+
+
+
+        //_______________________________________________________
+        if (spinResult[1] == "blank") {
+            //"blank" is represent white image"
+            wheelTwoImage = new objects.Images("blank", 300, 130, false)
+            stage.addChild(wheelTwoImage);
+        }
+
+        if (spinResult[1] == "Grapes") {
+            //Grapes will be represented with cup
+            wheelTwoImage = new objects.Images("cup", 300, 130, false)
+            stage.addChild(wheelTwoImage);
+        }
+
+        if (spinResult[1] == "Banana") {
+            //Banana will represent flag
+            wheelTwoImage = new objects.Images("flag", 300, 130, false)
+            stage.addChild(wheelTwoImage);
+        }
+
+        if (spinResult[1] == "Orange") {
+            //Orange will represent stadium
+            wheelTwoImage = new objects.Images("stadium", 300, 130, false)
+            stage.addChild(wheelTwoImage);
+        }
+
+        if (spinResult[1] == "Cherry") {
+            //Cherry will represenet "whistle" LOL
+            wheelTwoImage = new objects.Images("whistle", 300, 130, false)
+            stage.addChild(wheelTwoImage);
+        }
+        if (spinResult[1] == "Bar") {
+            // Bar will be represenent as cards
+            wheelTwoImage = new objects.Images("cards", 300, 130, false)
+            stage.addChild(wheelTwoImage);
+        }
+        if (spinResult[1] == "Bell") {
+            //Soccer ball will represent bell
+            wheelTwoImage = new objects.Images("ball", 300, 130, false)
+            stage.addChild(wheelTwoImage);
+        }
+
+        if (spinResult[1] == "Seven") {
+            //Sevens will be represent with soccerball with 7s
+            wheelTwoImage = new objects.Images("777", 300, 130, false)
+            stage.addChild(wheelTwoImage);
+        }
+
+
+        
+
+
     }
     //callback function that cahnges the alpha transparency of the button
     //mouseover event
@@ -147,7 +340,7 @@ function preload() {
 
 
         //add spinButton srpite
-        spinButton = new objects.Button("spin", 225, 334, false);
+        spinButton = new objects.Button("spin", 510, 242, false);
         stage.addChild(spinButton);
         spinButton.on("click", spinButtonClicked, this);
 
