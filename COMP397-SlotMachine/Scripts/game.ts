@@ -18,8 +18,6 @@ var stats: Stats;
 var assets: createjs.LoadQueue;
 var manifest = [
     { id: "background", src: "assets/images/slotmachine.png" },
-    { id: "bet5", src: "assets/images/bet5.png" },
-    { id: "bet50", src: "assets/images/bet50.png" },
     { id: "clicked", src: "assets/audio/clicked.wav" }
 ];
 
@@ -33,22 +31,22 @@ var atlas = {
         [2, 2, 80, 112, 0, 0, 0],
         [84, 2, 80, 105, 0, 0, 0],
         [166, 2, 95, 97, 0, 0, 0],
-        [263, 2, 93, 97, 0, 0, 0],
-        [358, 2, 95, 96, 0, 0, 0],
-        [455, 2, 80, 88, 0, 0, 0],
-        [537, 2, 80, 85, 0, 0, 0],
-        [619, 2, 80, 84, 0, 0, 0],
-        [701, 2, 80, 78, 0, 0, 0],
-        [783, 2, 76, 76, 0, 0, 0],
-        [861, 2, 65, 67, 0, 0, 0],
-        [928, 2, 65, 67, 0, 0, 0],
-        [995, 2, 65, 67, 0, 0, 0],
-        [1062, 2, 65, 66, 0, 0, 0],
-        [1129, 2, 65, 66, 0, 0, 0],
-        [1196, 2, 65, 66, 0, 0, 0],
-        [1263, 2, 65, 66, 0, 0, 0],
-        [1330, 2, 65, 66, 0, 0, 0],
-        [1397, 2, 80, 62, 0, 0, 0]
+        [263, 2, 93, 97, 0, -1, -1],
+        [358, 2, 93, 94, 0, -2, 0],
+        [453, 2, 80, 88, 0, 0, 0],
+        [535, 2, 80, 85, 0, 0, 0],
+        [617, 2, 80, 84, 0, 0, 0],
+        [699, 2, 80, 78, 0, 0, 0],
+        [781, 2, 76, 76, 0, -2, -4],
+        [859, 2, 65, 67, 0, 0, 0],
+        [926, 2, 65, 67, 0, 0, 0],
+        [993, 2, 65, 66, 0, 0, 0],
+        [1060, 2, 65, 66, 0, 0, 0],
+        [1127, 2, 65, 66, 0, 0, 0],
+        [1194, 2, 64, 66, 0, 0, 0],
+        [1260, 2, 64, 66, 0, 0, 0],
+        [1326, 2, 64, 66, 0, 0, 0],
+        [1392, 2, 80, 62, 0, 0, 0]
     ],
 
     "animations": {
@@ -63,11 +61,13 @@ var atlas = {
         "whistle": [8],
         "ball": [9],
         "bet100": [10],
-        "bet500": [12],
-        "bet1": [13],
-        "bet10": [14],
-        "bet2": [15],
-        "bet25": [16],
+        "bet50": [11],
+        "bet10": [12],
+        "bet25": [13],
+        "bet500": [14],
+        "bet1": [15],
+        "bet2": [16],
+        "bet5": [17],
         "cards": [18]
     }
 };
@@ -234,10 +234,6 @@ e.g. Bar - Orange - Banana */
         stage.removeAllChildren();
         //call main function to add back the background
 
-
-        //add bet5 button
-        bet5 = new objects.Button("bet5", 80, 410, false);
-        stage.addChild(bet5);
 
         main();
 
@@ -427,9 +423,9 @@ e.g. Bar - Orange - Banana */
         bet2 = new objects.Button("bet2", 150, 340, false);
         stage.addChild(bet2);
 
-
-
-
+        //add bet5 button
+        bet5 = new objects.Button("bet5", 80, 410, false)
+        stage.addChild(bet5);
 
 
         //add bet10 button
@@ -440,23 +436,24 @@ e.g. Bar - Orange - Banana */
 
 
 
+
         //add bet25 button
-        bet25 = new objects.Button("bet25", 400, 310, false);
+        bet25 = new objects.Button("bet25", 440, 340, false);
         stage.addChild(bet25);
 
 
         //add bet50 button
-        bet50 = new objects.Button("bet50", 470, 310, false);
+        bet50 = new objects.Button("bet50", 510, 340, false);
         stage.addChild(bet50);
 
 
         //add bet100 button
-        bet100 = new objects.Button("bet100", 400, 400, false);
+        bet100 = new objects.Button("bet100", 440, 410, false);
         stage.addChild(bet100);
 
 
         //add bet1 button
-        bet500 = new objects.Button("bet500", 470, 400, false);
+        bet500 = new objects.Button("bet500", 510, 410, false);
         stage.addChild(bet500);
 
     }
