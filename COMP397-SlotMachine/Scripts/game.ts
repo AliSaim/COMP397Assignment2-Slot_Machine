@@ -95,6 +95,16 @@ var bet50: objects.Button;
 var bet100: objects.Button;
 var bet500: objects.Button;
 
+var bet1Label: createjs.Text;
+var bet2Label: objects.Label;
+var bet5Label: objects.Label;
+var bet10Label: objects.Label;
+var bet25Label: objects.Label;
+var bet50Label: objects.Label;
+var bet100Label: objects.Label;
+var bet500Label: objects.Label;
+
+
 
 
 /* Tally Variables */
@@ -221,10 +231,95 @@ e.g. Bar - Orange - Banana */
         return betLine;
     }
 
+    
 
+    function bet1ButtonClick(event: createjs.MouseEvent) {
+        stage.removeAllChildren();
+        main();
+        bet1Label = new createjs.Text("$1.00", "20px Consolas", "#ff0000");
+        bet1Label.regX = bet1Label.getMeasuredWidth() * 0.5;
+        bet1Label.regY = bet1Label.getMeasuredHeight() * 0.5;
+        bet1Label.x = 340;
+        bet1Label.y = 495;
+        stage.addChild(bet1Label);
+    }
 
+    function bet2ButtonClick(event: createjs.MouseEvent) {
+        stage.removeAllChildren();
+        main();
+        bet2Label = new createjs.Text("$2.00", "20px Consolas", "#ff0000");
+        bet2Label.regX = bet2Label.getMeasuredWidth() * 0.5;
+        bet2Label.regY = bet2Label.getMeasuredHeight() * 0.5;
+        bet2Label.x = 340;
+        bet2Label.y = 495;
+        stage.addChild(bet2Label);
+    }
 
+    function bet5ButtonClick(event: createjs.MouseEvent) {
+        stage.removeAllChildren();
+        main();
+        bet5Label = new createjs.Text("$5.00", "20px Consolas", "#ff0000");
+        bet5Label.regX = bet5Label.getMeasuredWidth() * 0.5;
+        bet5Label.regY = bet5Label.getMeasuredHeight() * 0.5;
+        bet5Label.x = 340;
+        bet5Label.y = 495;
+        stage.addChild(bet5Label);
+    }
 
+    function bet10ButtonClick(event: createjs.MouseEvent) {
+        stage.removeAllChildren();
+        main();
+        bet10Label = new createjs.Text("$10.00", "20px Consolas", "#ff0000");
+        bet10Label.regX = bet10Label.getMeasuredWidth() * 0.5;
+        bet10Label.regY = bet10Label.getMeasuredHeight() * 0.5;
+        bet10Label.x = 340;
+        bet10Label.y = 495;
+        stage.addChild(bet10Label);
+    }
+
+    function bet25ButtonClick(event: createjs.MouseEvent) {
+        stage.removeAllChildren();
+        main();
+        bet25Label = new createjs.Text("$25.00", "20px Consolas", "#ff0000");
+        bet25Label.regX = bet25Label.getMeasuredWidth() * 0.5;
+        bet25Label.regY = bet25Label.getMeasuredHeight() * 0.5;
+        bet25Label.x = 340;
+        bet25Label.y = 495;
+        stage.addChild(bet25Label);
+    }
+
+    function bet50ButtonClick(event: createjs.MouseEvent) {
+        stage.removeAllChildren();
+        main();
+        bet50Label = new createjs.Text("$50.00", "20px Consolas", "#ff0000");
+        bet50Label.regX = bet50Label.getMeasuredWidth() * 0.5;
+        bet50Label.regY = bet50Label.getMeasuredHeight() * 0.5;
+        bet50Label.x = 340;
+        bet50Label.y = 495;
+        stage.addChild(bet50Label);
+    }
+
+    function bet100ButtonClick(event: createjs.MouseEvent) {
+        stage.removeAllChildren();
+        main();
+        bet100Label = new createjs.Text("$100.00", "20px Consolas", "#ff0000");
+        bet100Label.regX = bet100Label.getMeasuredWidth() * 0.5;
+        bet100Label.regY = bet100Label.getMeasuredHeight() * 0.5;
+        bet100Label.x = 340;
+        bet100Label.y = 495;
+        stage.addChild(bet100Label);
+    }
+
+    function bet500ButtonClick(event: createjs.MouseEvent) {
+        stage.removeAllChildren();
+        main();
+        bet500Label = new createjs.Text("$500.00", "20px Consolas", "#ff0000");
+        bet500Label.regX = bet500Label.getMeasuredWidth() * 0.5;
+        bet500Label.regY = bet500Label.getMeasuredHeight() * 0.5;
+        bet500Label.x = 340;
+        bet500Label.y = 495;
+        stage.addChild(bet500Label);
+    }
 
     //callback function that allows me to respond to button click events
     function spinButtonClicked(event: createjs.MouseEvent) {
@@ -417,20 +512,24 @@ e.g. Bar - Orange - Banana */
         //add bet1 button
         bet1 = new objects.Button("bet1", 80, 340, false);
         stage.addChild(bet1);
+        bet1.on("click", bet1ButtonClick, this);
         
 
         //add bet2 button
         bet2 = new objects.Button("bet2", 150, 340, false);
         stage.addChild(bet2);
+        bet2.on("click", bet2ButtonClick, this);
 
         //add bet5 button
         bet5 = new objects.Button("bet5", 80, 410, false)
         stage.addChild(bet5);
+        bet5.on("click", bet5ButtonClick, this);
 
 
         //add bet10 button
         bet10 = new objects.Button("bet10", 150, 410, false);
         stage.addChild(bet10);
+        bet10.on("click", bet10ButtonClick, this);
 
 
 
@@ -440,21 +539,25 @@ e.g. Bar - Orange - Banana */
         //add bet25 button
         bet25 = new objects.Button("bet25", 440, 340, false);
         stage.addChild(bet25);
+        bet25.on("click", bet25ButtonClick, this);
 
 
         //add bet50 button
         bet50 = new objects.Button("bet50", 510, 340, false);
         stage.addChild(bet50);
+        bet50.on("click", bet50ButtonClick, this);
 
 
         //add bet100 button
         bet100 = new objects.Button("bet100", 440, 410, false);
         stage.addChild(bet100);
+        bet100.on("click", bet100ButtonClick, this);
 
 
         //add bet1 button
         bet500 = new objects.Button("bet500", 510, 410, false);
         stage.addChild(bet500);
+        bet500.on("click", bet500ButtonClick, this);
 
     }
 }
