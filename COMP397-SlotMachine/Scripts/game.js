@@ -18,9 +18,7 @@ var manifest = [
 ];
 var atlas = {
     "images": [
-        "assets/images/atlas.png"
-    ],
-    "frames": [
+        "assets/images/atlas.png"], "frames": [
         [2, 2, 80, 112, 0, 0, 0],
         [84, 2, 80, 105, 0, 0, 0],
         [166, 2, 95, 97, 0, 0, 0],
@@ -88,6 +86,10 @@ var bet25Label;
 var bet50Label;
 var bet100Label;
 var bet500Label;
+var playerCreditLabel;
+var jackpotLabel;
+var playerBetZero;
+var spinResultZero;
 /* Tally Variables */
 var grapes = 0;
 var bananas = 0;
@@ -99,6 +101,24 @@ var sevens = 0;
 var blanks = 0;
 var spinResult;
 var fruits = "";
+var playerCreditAmount = 1000;
+var bet1Dollar = 1.0;
+var bet2Dollars = 2.0;
+var bet5Dollars = 5.0;
+var bet10Dollars = 10.0;
+var bet25Dollars = 25.0;
+var bet50Dollars = 50.0;
+var bet100Dollars = 100.0;
+var bet500Dollars = 500.0;
+var spinButtonState = false;
+var bet1DollarState = false;
+var bet2DollarState = false;
+var bet5DollarState = false;
+var bet10DollarState = false;
+var bet25DollarState = false;
+var bet50DollarState = false;
+var bet100DollarState = false;
+var bet500DollarState = false;
 //preloader Function
 function preload() {
     assets = new createjs.LoadQueue();
@@ -189,8 +209,27 @@ e.g. Bar - Orange - Banana */
         return betLine;
     }
     function bet1ButtonClick(event) {
+        spinButtonState = true;
+        bet1DollarState = true;
+        bet2DollarState = false;
+        bet5DollarState = false;
+        bet10DollarState = false;
+        bet25DollarState = false;
+        bet50DollarState = false;
+        bet100DollarState = false;
+        bet500DollarState = false;
+        if (playerCreditAmount < 1) {
+            alert("Not enough money to play...Good Game!!!");
+            spinButtonState = false;
+            stage.removeChild(bet1);
+        }
+        if ((bet1DollarState) && (spinButtonState)) {
+            playerCreditAmount = playerCreditAmount - bet1Dollar;
+            bet1DollarState = false;
+        }
         stage.removeAllChildren();
         main();
+        stage.removeChild(playerBetZero);
         bet1Label = new createjs.Text("$1.00", "20px Consolas", "#ff0000");
         bet1Label.regX = bet1Label.getMeasuredWidth() * 0.5;
         bet1Label.regY = bet1Label.getMeasuredHeight() * 0.5;
@@ -199,8 +238,27 @@ e.g. Bar - Orange - Banana */
         stage.addChild(bet1Label);
     }
     function bet2ButtonClick(event) {
+        spinButtonState = true;
+        bet1DollarState = false;
+        bet2DollarState = true;
+        bet5DollarState = false;
+        bet10DollarState = false;
+        bet25DollarState = false;
+        bet50DollarState = false;
+        bet100DollarState = false;
+        bet500DollarState = false;
+        if (playerCreditAmount < 2) {
+            alert("Not enough money to play with $2.00\nConsider playing with a smaller amount of money.");
+            spinButtonState = false;
+            stage.removeChild(bet2);
+        }
+        if ((bet2DollarState) && (spinButtonState)) {
+            playerCreditAmount = playerCreditAmount - bet2Dollars;
+            bet2DollarState = false;
+        }
         stage.removeAllChildren();
         main();
+        stage.removeChild(playerBetZero);
         bet2Label = new createjs.Text("$2.00", "20px Consolas", "#ff0000");
         bet2Label.regX = bet2Label.getMeasuredWidth() * 0.5;
         bet2Label.regY = bet2Label.getMeasuredHeight() * 0.5;
@@ -209,8 +267,27 @@ e.g. Bar - Orange - Banana */
         stage.addChild(bet2Label);
     }
     function bet5ButtonClick(event) {
+        spinButtonState = true;
+        bet1DollarState = false;
+        bet2DollarState = false;
+        bet5DollarState = true;
+        bet10DollarState = false;
+        bet25DollarState = false;
+        bet50DollarState = false;
+        bet100DollarState = false;
+        bet500DollarState = false;
+        if (playerCreditAmount < 5) {
+            alert("Not enough money to play with $5.00\nConsider playing with a smaller amount of money.");
+            spinButtonState = false;
+            stage.removeChild(bet5);
+        }
+        if ((bet5DollarState) && (spinButtonState)) {
+            playerCreditAmount = playerCreditAmount - bet5Dollars;
+            bet5DollarState = false;
+        }
         stage.removeAllChildren();
         main();
+        stage.removeChild(playerBetZero);
         bet5Label = new createjs.Text("$5.00", "20px Consolas", "#ff0000");
         bet5Label.regX = bet5Label.getMeasuredWidth() * 0.5;
         bet5Label.regY = bet5Label.getMeasuredHeight() * 0.5;
@@ -219,8 +296,27 @@ e.g. Bar - Orange - Banana */
         stage.addChild(bet5Label);
     }
     function bet10ButtonClick(event) {
+        spinButtonState = true;
+        bet1DollarState = false;
+        bet2DollarState = false;
+        bet5DollarState = false;
+        bet10DollarState = true;
+        bet25DollarState = false;
+        bet50DollarState = false;
+        bet100DollarState = false;
+        bet500DollarState = false;
+        if (playerCreditAmount < 10) {
+            alert("Not enough money to play with $10.00\nConsider playing with a smaller amount of money.");
+            spinButtonState = false;
+            stage.removeChild(bet10);
+        }
+        if ((bet10DollarState) && (spinButtonState)) {
+            playerCreditAmount = playerCreditAmount - bet10Dollars;
+            bet10DollarState = false;
+        }
         stage.removeAllChildren();
         main();
+        stage.removeChild(playerBetZero);
         bet10Label = new createjs.Text("$10.00", "20px Consolas", "#ff0000");
         bet10Label.regX = bet10Label.getMeasuredWidth() * 0.5;
         bet10Label.regY = bet10Label.getMeasuredHeight() * 0.5;
@@ -229,8 +325,27 @@ e.g. Bar - Orange - Banana */
         stage.addChild(bet10Label);
     }
     function bet25ButtonClick(event) {
+        spinButtonState = true;
+        bet1DollarState = false;
+        bet2DollarState = false;
+        bet5DollarState = false;
+        bet10DollarState = false;
+        bet25DollarState = true;
+        bet50DollarState = false;
+        bet100DollarState = false;
+        bet500DollarState = false;
+        if (playerCreditAmount < 25) {
+            alert("Not enough money to play with $25.00\nConsider playing with a smaller amount of money.");
+            spinButtonState = false;
+            stage.removeChild(bet25);
+        }
+        if ((bet25DollarState) && (spinButtonState)) {
+            playerCreditAmount = playerCreditAmount - bet25Dollars;
+            bet25DollarState = false;
+        }
         stage.removeAllChildren();
         main();
+        stage.removeChild(playerBetZero);
         bet25Label = new createjs.Text("$25.00", "20px Consolas", "#ff0000");
         bet25Label.regX = bet25Label.getMeasuredWidth() * 0.5;
         bet25Label.regY = bet25Label.getMeasuredHeight() * 0.5;
@@ -239,8 +354,27 @@ e.g. Bar - Orange - Banana */
         stage.addChild(bet25Label);
     }
     function bet50ButtonClick(event) {
+        spinButtonState = true;
+        bet1DollarState = false;
+        bet2DollarState = false;
+        bet5DollarState = false;
+        bet10DollarState = false;
+        bet25DollarState = false;
+        bet50DollarState = true;
+        bet100DollarState = false;
+        bet500DollarState = false;
+        if (playerCreditAmount < 50) {
+            alert("Not enough money to play with $50.00\nConsider playing with a smaller amount of money.");
+            spinButtonState = false;
+            stage.removeChild(bet50);
+        }
+        if ((bet50DollarState) && (spinButtonState)) {
+            playerCreditAmount = playerCreditAmount - bet50Dollars;
+            bet50DollarState = false;
+        }
         stage.removeAllChildren();
         main();
+        stage.removeChild(playerBetZero);
         bet50Label = new createjs.Text("$50.00", "20px Consolas", "#ff0000");
         bet50Label.regX = bet50Label.getMeasuredWidth() * 0.5;
         bet50Label.regY = bet50Label.getMeasuredHeight() * 0.5;
@@ -249,8 +383,27 @@ e.g. Bar - Orange - Banana */
         stage.addChild(bet50Label);
     }
     function bet100ButtonClick(event) {
+        spinButtonState = true;
+        bet1DollarState = false;
+        bet2DollarState = false;
+        bet5DollarState = false;
+        bet10DollarState = false;
+        bet25DollarState = false;
+        bet50DollarState = false;
+        bet100DollarState = true;
+        bet500DollarState = false;
+        if (playerCreditAmount < 100) {
+            alert("Not enough money to play with $100.00\nConsider playing with a smaller amount of money.");
+            spinButtonState = false;
+            stage.removeChild(bet100);
+        }
+        if ((bet100DollarState) && (spinButtonState)) {
+            playerCreditAmount = playerCreditAmount - bet100Dollars;
+            bet100DollarState = false;
+        }
         stage.removeAllChildren();
         main();
+        stage.removeChild(playerBetZero);
         bet100Label = new createjs.Text("$100.00", "20px Consolas", "#ff0000");
         bet100Label.regX = bet100Label.getMeasuredWidth() * 0.5;
         bet100Label.regY = bet100Label.getMeasuredHeight() * 0.5;
@@ -259,8 +412,26 @@ e.g. Bar - Orange - Banana */
         stage.addChild(bet100Label);
     }
     function bet500ButtonClick(event) {
+        spinButtonState = true;
+        bet1DollarState = false;
+        bet2DollarState = false;
+        bet5DollarState = false;
+        bet10DollarState = false;
+        bet25DollarState = false;
+        bet50DollarState = false;
+        bet100DollarState = false;
+        bet500DollarState = true;
+        if (playerCreditAmount < 500) {
+            alert("Not enough money to play with $500.00\nConsider playing with a smaller amount of money.");
+            spinButtonState = false;
+            stage.removeChild(bet500);
+        }
+        if ((bet500DollarState) && (spinButtonState)) {
+            playerCreditAmount = playerCreditAmount - bet500Dollars;
+        }
         stage.removeAllChildren();
         main();
+        stage.removeChild(playerBetZero);
         bet500Label = new createjs.Text("$500.00", "20px Consolas", "#ff0000");
         bet500Label.regX = bet500Label.getMeasuredWidth() * 0.5;
         bet500Label.regY = bet500Label.getMeasuredHeight() * 0.5;
@@ -270,137 +441,143 @@ e.g. Bar - Orange - Banana */
     }
     //callback function that allows me to respond to button click events
     function spinButtonClicked(event) {
-        createjs.Sound.play("clicked");
-        //remove last images from the canvas
-        stage.removeAllChildren();
-        //call main function to add back the background
-        main();
-        spinResult = Reels();
-        fruits = spinResult[0] + " - " + spinResult[1] + " - " + spinResult[2];
-        console.log(fruits);
-        if (spinResult[0] == "blank") {
-            //"blank" is represent white image"
-            wheelOneImage = new objects.Images("blank", 180, 130, false);
-            stage.addChild(wheelOneImage);
+        if (spinButtonState == false) {
+            alert("Please select an amount first.");
         }
-        if (spinResult[0] == "Grapes") {
-            //Grapes will be represented with cup
-            wheelOneImage = new objects.Images("cup", 180, 130, false);
-            stage.addChild(wheelOneImage);
-        }
-        if (spinResult[0] == "Banana") {
-            //Banana will represent flag
-            wheelOneImage = new objects.Images("flag", 180, 130, false);
-            stage.addChild(wheelOneImage);
-        }
-        if (spinResult[0] == "Orange") {
-            //Orange will represent stadium
-            wheelOneImage = new objects.Images("stadium", 180, 130, false);
-            stage.addChild(wheelOneImage);
-        }
-        if (spinResult[0] == "Cherry") {
-            //Cherry will represenet "whistle" LOL
-            wheelOneImage = new objects.Images("whistle", 180, 130, false);
-            stage.addChild(wheelOneImage);
-        }
-        if (spinResult[0] == "Bar") {
-            // Bar will be represenent as cards
-            wheelOneImage = new objects.Images("cards", 180, 130, false);
-            stage.addChild(wheelOneImage);
-        }
-        if (spinResult[0] == "Bell") {
-            //Soccer ball will represent bell
-            wheelOneImage = new objects.Images("ball", 180, 130, false);
-            stage.addChild(wheelOneImage);
-        }
-        if (spinResult[0] == "Seven") {
-            //Sevens will be represent with soccerball with 7s
-            wheelOneImage = new objects.Images("777", 180, 130, false);
-            stage.addChild(wheelOneImage);
-        }
-        //_______________________________________________________
-        //_______________________________________________________
-        if (spinResult[1] == "blank") {
-            //"blank" is represent white image"
-            wheelTwoImage = new objects.Images("blank", 300, 130, false);
-            stage.addChild(wheelTwoImage);
-        }
-        if (spinResult[1] == "Grapes") {
-            //Grapes will be represented with cup
-            wheelTwoImage = new objects.Images("cup", 300, 130, false);
-            stage.addChild(wheelTwoImage);
-        }
-        if (spinResult[1] == "Banana") {
-            //Banana will represent flag
-            wheelTwoImage = new objects.Images("flag", 300, 130, false);
-            stage.addChild(wheelTwoImage);
-        }
-        if (spinResult[1] == "Orange") {
-            //Orange will represent stadium
-            wheelTwoImage = new objects.Images("stadium", 300, 130, false);
-            stage.addChild(wheelTwoImage);
-        }
-        if (spinResult[1] == "Cherry") {
-            //Cherry will represenet "whistle" LOL
-            wheelTwoImage = new objects.Images("whistle", 300, 130, false);
-            stage.addChild(wheelTwoImage);
-        }
-        if (spinResult[1] == "Bar") {
-            // Bar will be represenent as cards
-            wheelTwoImage = new objects.Images("cards", 300, 130, false);
-            stage.addChild(wheelTwoImage);
-        }
-        if (spinResult[1] == "Bell") {
-            //Soccer ball will represent bell
-            wheelTwoImage = new objects.Images("ball", 300, 130, false);
-            stage.addChild(wheelTwoImage);
-        }
-        if (spinResult[1] == "Seven") {
-            //Sevens will be represent with soccerball with 7s
-            wheelTwoImage = new objects.Images("777", 300, 130, false);
-            stage.addChild(wheelTwoImage);
-        }
-        //_______________________________________________________
-        //_______________________________________________________
-        if (spinResult[2] == "blank") {
-            //"blank" is represent white image"
-            wheelThreeImage = new objects.Images("blank", 420, 130, false);
-            stage.addChild(wheelThreeImage);
-        }
-        if (spinResult[2] == "Grapes") {
-            //Grapes will be represented with cup
-            wheelThreeImage = new objects.Images("cup", 420, 130, false);
-            stage.addChild(wheelThreeImage);
-        }
-        if (spinResult[2] == "Banana") {
-            //Banana will represent flag
-            wheelThreeImage = new objects.Images("flag", 420, 130, false);
-            stage.addChild(wheelThreeImage);
-        }
-        if (spinResult[2] == "Orange") {
-            //Orange will represent stadium
-            wheelThreeImage = new objects.Images("stadium", 420, 130, false);
-            stage.addChild(wheelThreeImage);
-        }
-        if (spinResult[2] == "Cherry") {
-            //Cherry will represenet "whistle" LOL
-            wheelThreeImage = new objects.Images("whistle", 420, 130, false);
-            stage.addChild(wheelThreeImage);
-        }
-        if (spinResult[2] == "Bar") {
-            // Bar will be represenent as cards
-            wheelTwoImage = new objects.Images("cards", 420, 130, false);
-            stage.addChild(wheelTwoImage);
-        }
-        if (spinResult[2] == "Bell") {
-            //Soccer ball will represent bell
-            wheelThreeImage = new objects.Images("ball", 420, 130, false);
-            stage.addChild(wheelThreeImage);
-        }
-        if (spinResult[2] == "Seven") {
-            //Sevens will be represent with soccerball with 7s
-            wheelThreeImage = new objects.Images("777", 420, 130, false);
-            stage.addChild(wheelThreeImage);
+        else {
+            createjs.Sound.play("clicked");
+            //remove last images from the canvas
+            stage.removeAllChildren();
+            //call main function to add back the background
+            main();
+            spinResult = Reels();
+            fruits = spinResult[0] + " - " + spinResult[1] + " - " + spinResult[2];
+            console.log(fruits);
+            if (spinResult[0] == "blank") {
+                //"blank" is represent white image"
+                wheelOneImage = new objects.Images("blank", 180, 130, false);
+                stage.addChild(wheelOneImage);
+            }
+            if (spinResult[0] == "Grapes") {
+                //Grapes will be represented with cup
+                wheelOneImage = new objects.Images("cup", 180, 130, false);
+                stage.addChild(wheelOneImage);
+            }
+            if (spinResult[0] == "Banana") {
+                //Banana will represent flag
+                wheelOneImage = new objects.Images("flag", 180, 130, false);
+                stage.addChild(wheelOneImage);
+            }
+            if (spinResult[0] == "Orange") {
+                //Orange will represent stadium
+                wheelOneImage = new objects.Images("stadium", 180, 130, false);
+                stage.addChild(wheelOneImage);
+            }
+            if (spinResult[0] == "Cherry") {
+                //Cherry will represenet "whistle" LOL
+                wheelOneImage = new objects.Images("whistle", 180, 130, false);
+                stage.addChild(wheelOneImage);
+            }
+            if (spinResult[0] == "Bar") {
+                // Bar will be represenent as cards
+                wheelOneImage = new objects.Images("cards", 180, 130, false);
+                stage.addChild(wheelOneImage);
+            }
+            if (spinResult[0] == "Bell") {
+                //Soccer ball will represent bell
+                wheelOneImage = new objects.Images("ball", 180, 130, false);
+                stage.addChild(wheelOneImage);
+            }
+            if (spinResult[0] == "Seven") {
+                //Sevens will be represent with soccerball with 7s
+                wheelOneImage = new objects.Images("777", 180, 130, false);
+                stage.addChild(wheelOneImage);
+            }
+            //_______________________________________________________
+            //_______________________________________________________
+            if (spinResult[1] == "blank") {
+                //"blank" is represent white image"
+                wheelTwoImage = new objects.Images("blank", 300, 130, false);
+                stage.addChild(wheelTwoImage);
+            }
+            if (spinResult[1] == "Grapes") {
+                //Grapes will be represented with cup
+                wheelTwoImage = new objects.Images("cup", 300, 130, false);
+                stage.addChild(wheelTwoImage);
+            }
+            if (spinResult[1] == "Banana") {
+                //Banana will represent flag
+                wheelTwoImage = new objects.Images("flag", 300, 130, false);
+                stage.addChild(wheelTwoImage);
+            }
+            if (spinResult[1] == "Orange") {
+                //Orange will represent stadium
+                wheelTwoImage = new objects.Images("stadium", 300, 130, false);
+                stage.addChild(wheelTwoImage);
+            }
+            if (spinResult[1] == "Cherry") {
+                //Cherry will represenet "whistle" LOL
+                wheelTwoImage = new objects.Images("whistle", 300, 130, false);
+                stage.addChild(wheelTwoImage);
+            }
+            if (spinResult[1] == "Bar") {
+                // Bar will be represenent as cards
+                wheelTwoImage = new objects.Images("cards", 300, 130, false);
+                stage.addChild(wheelTwoImage);
+            }
+            if (spinResult[1] == "Bell") {
+                //Soccer ball will represent bell
+                wheelTwoImage = new objects.Images("ball", 300, 130, false);
+                stage.addChild(wheelTwoImage);
+            }
+            if (spinResult[1] == "Seven") {
+                //Sevens will be represent with soccerball with 7s
+                wheelTwoImage = new objects.Images("777", 300, 130, false);
+                stage.addChild(wheelTwoImage);
+            }
+            //_______________________________________________________
+            //_______________________________________________________
+            if (spinResult[2] == "blank") {
+                //"blank" is represent white image"
+                wheelThreeImage = new objects.Images("blank", 420, 130, false);
+                stage.addChild(wheelThreeImage);
+            }
+            if (spinResult[2] == "Grapes") {
+                //Grapes will be represented with cup
+                wheelThreeImage = new objects.Images("cup", 420, 130, false);
+                stage.addChild(wheelThreeImage);
+            }
+            if (spinResult[2] == "Banana") {
+                //Banana will represent flag
+                wheelThreeImage = new objects.Images("flag", 420, 130, false);
+                stage.addChild(wheelThreeImage);
+            }
+            if (spinResult[2] == "Orange") {
+                //Orange will represent stadium
+                wheelThreeImage = new objects.Images("stadium", 420, 130, false);
+                stage.addChild(wheelThreeImage);
+            }
+            if (spinResult[2] == "Cherry") {
+                //Cherry will represenet "whistle" LOL
+                wheelThreeImage = new objects.Images("whistle", 420, 130, false);
+                stage.addChild(wheelThreeImage);
+            }
+            if (spinResult[2] == "Bar") {
+                // Bar will be represenent as cards
+                wheelTwoImage = new objects.Images("cards", 420, 130, false);
+                stage.addChild(wheelTwoImage);
+            }
+            if (spinResult[2] == "Bell") {
+                //Soccer ball will represent bell
+                wheelThreeImage = new objects.Images("ball", 420, 130, false);
+                stage.addChild(wheelThreeImage);
+            }
+            if (spinResult[2] == "Seven") {
+                //Sevens will be represent with soccerball with 7s
+                wheelThreeImage = new objects.Images("777", 420, 130, false);
+                stage.addChild(wheelThreeImage);
+            }
+            spinButtonState = false;
         }
     }
     //callback function that cahnges the alpha transparency of the button
@@ -414,6 +591,34 @@ e.g. Bar - Orange - Banana */
         spinButton = new objects.Button("spin", 510, 242, false);
         stage.addChild(spinButton);
         spinButton.on("click", spinButtonClicked, this);
+        //add player credits label
+        playerCreditLabel = new createjs.Text(playerCreditAmount.toString(), "20px Consolas", "#ff0000");
+        playerCreditLabel.regX = playerCreditLabel.getMeasuredWidth() * 0.5;
+        playerCreditLabel.regY = playerCreditLabel.getMeasuredHeight() * 0.5;
+        playerCreditLabel.x = 125;
+        playerCreditLabel.y = 495;
+        stage.addChild(playerCreditLabel);
+        //add jackpot label
+        jackpotLabel = new createjs.Text("$50000.00", "25px Consolas", "#ff0000");
+        jackpotLabel.regX = jackpotLabel.getMeasuredWidth() * 0.5;
+        jackpotLabel.regY = jackpotLabel.getMeasuredHeight() * 0.5;
+        jackpotLabel.x = 315;
+        jackpotLabel.y = 217;
+        stage.addChild(jackpotLabel);
+        //add playerBet zero(zero value when game first loads)
+        playerBetZero = new createjs.Text("$0.00", "20px Consolas", "#ff0000");
+        playerBetZero.regX = playerBetZero.getMeasuredWidth() * 0.5;
+        playerBetZero.regY = playerBetZero.getMeasuredHeight() * 0.5;
+        playerBetZero.x = 340;
+        playerBetZero.y = 495;
+        stage.addChild(playerBetZero);
+        //add spin result zero(zero value when game first loads)
+        spinResultZero = new createjs.Text("$0.00", "20px Consolas", "#ff0000");
+        spinResultZero.regX = spinResultZero.getMeasuredWidth() * 0.5;
+        spinResultZero.regY = spinResultZero.getMeasuredHeight() * 0.5;
+        spinResultZero.x = 550;
+        spinResultZero.y = 495;
+        stage.addChild(spinResultZero);
         //add bet1 button
         bet1 = new objects.Button("bet1", 80, 340, false);
         stage.addChild(bet1);
