@@ -173,6 +173,7 @@ e.g. Bar - Orange - Banana */
         }
         return betLine;
     }
+    //If the user want to bet with $1 event
     function bet1ButtonClick(event) {
         //main();
         stage.removeChild(jackpotLabel);
@@ -214,6 +215,7 @@ e.g. Bar - Orange - Banana */
             stage.addChild(bet1Label);
         }
     }
+    //If the user want to bet with $2 event
     function bet2ButtonClick(event) {
         //main();
         stage.removeChild(jackpotLabel);
@@ -255,6 +257,7 @@ e.g. Bar - Orange - Banana */
             stage.addChild(bet2Label);
         }
     }
+    //If the user want to bet with $5 event
     function bet5ButtonClick(event) {
         //main();
         stage.removeChild(jackpotLabel);
@@ -296,6 +299,7 @@ e.g. Bar - Orange - Banana */
             stage.addChild(bet5Label);
         }
     }
+    //If the user want to bet with $10 event
     function bet10ButtonClick(event) {
         //main();
         stage.removeChild(jackpotLabel);
@@ -337,6 +341,7 @@ e.g. Bar - Orange - Banana */
             stage.addChild(bet10Label);
         }
     }
+    //If the user want to bet with $25 event
     function bet25ButtonClick(event) {
         //main();
         stage.removeChild(jackpotLabel);
@@ -378,6 +383,7 @@ e.g. Bar - Orange - Banana */
             stage.addChild(bet25Label);
         }
     }
+    //If the user want to bet with $50 event
     function bet50ButtonClick(event) {
         //main();
         stage.removeChild(jackpotLabel);
@@ -419,6 +425,7 @@ e.g. Bar - Orange - Banana */
             stage.addChild(bet50Label);
         }
     }
+    //If the user want to bet with $100 event
     function bet100ButtonClick(event) {
         //main();
         stage.removeChild(jackpotLabel);
@@ -460,6 +467,7 @@ e.g. Bar - Orange - Banana */
             stage.addChild(bet100Label);
         }
     }
+    //If the user want to bet with $500 event
     function bet500ButtonClick(event) {
         //main();
         stage.removeChild(spinResult);
@@ -501,7 +509,7 @@ e.g. Bar - Orange - Banana */
             stage.addChild(bet500Label);
         }
     }
-    //callback function that allows me to respond to button click events
+    //Main function of the game. Click this button to spin wheel
     function spinButtonClicked(event) {
         stage.removeChild(spinResult);
         if (spinButtonState == false) {
@@ -517,126 +525,126 @@ e.g. Bar - Orange - Banana */
             fruits = spinResult[0] + " - " + spinResult[1] + " - " + spinResult[2];
             console.log(fruits);
             if (spinResult[0] == "blank") {
-                //"blank" is represent white image"
+                //"blank" is represent white image" ************************
                 wheelOneImage = new objects.Images("blank", 180, 130, false);
                 stage.addChild(wheelOneImage);
             }
             if (spinResult[0] == "Grapes") {
-                //Grapes will be represented with cup
+                //Grapes will be represented with cup************************
                 wheelOneImage = new objects.Images("cup", 180, 130, false);
                 stage.addChild(wheelOneImage);
             }
             if (spinResult[0] == "Banana") {
-                //Banana will represent flag
+                //Banana will represent flag ********************************
                 wheelOneImage = new objects.Images("flag", 180, 130, false);
                 stage.addChild(wheelOneImage);
             }
             if (spinResult[0] == "Orange") {
-                //Orange will represent stadium
+                //Orange will represent stadium *******************************
                 wheelOneImage = new objects.Images("stadium", 180, 130, false);
                 stage.addChild(wheelOneImage);
             }
             if (spinResult[0] == "Cherry") {
-                //Cherry will represenet "whistle" LOL
+                //Cherry will represenet "whistle" LOL*************************
                 wheelOneImage = new objects.Images("whistle", 180, 130, false);
                 stage.addChild(wheelOneImage);
             }
             if (spinResult[0] == "Bar") {
-                // Bar will be represenent as cards
+                // Bar will be represenent as cards****************************
                 wheelOneImage = new objects.Images("cards", 180, 130, false);
                 stage.addChild(wheelOneImage);
             }
             if (spinResult[0] == "Bell") {
-                //Bell will be represent by ball
+                //Bell will be represent by ball*******************************
                 wheelOneImage = new objects.Images("ball", 180, 130, false);
                 stage.addChild(wheelOneImage);
             }
             if (spinResult[0] == "Seven") {
-                //Sevens will be represent with soccerball with 7s
+                //Sevens will be represent with soccerball with 7s************
                 wheelOneImage = new objects.Images("s777", 180, 130, false);
                 stage.addChild(wheelOneImage);
             }
-            //_______________________________________________________
-            //_______________________________________________________
+            //_______________________________________________________END OF WHEEL 1 IMAGES ONCE SPIN BUTTON IS CLICKED
+            //_______________________________________________________START OF WHEEL 2 IMAGES ONCE SPIN BUTTON IS CLICKED
             if (spinResult[1] == "blank") {
-                //"blank" is represent white image"
+                //"blank" is represent white image"**************************
                 wheelTwoImage = new objects.Images("blank", 300, 130, false);
                 stage.addChild(wheelTwoImage);
             }
             if (spinResult[1] == "Grapes") {
-                //Grapes will be represented with cup
+                //Grapes will be represented with cup*************************
                 wheelTwoImage = new objects.Images("cup", 300, 130, false);
                 stage.addChild(wheelTwoImage);
             }
             if (spinResult[1] == "Banana") {
-                //Banana will represent flag
+                //Banana will represent flag*********************************
                 wheelTwoImage = new objects.Images("flag", 300, 130, false);
                 stage.addChild(wheelTwoImage);
             }
             if (spinResult[1] == "Orange") {
-                //Orange will represent stadium
+                //Orange will represent stadium******************************
                 wheelTwoImage = new objects.Images("stadium", 300, 130, false);
                 stage.addChild(wheelTwoImage);
             }
             if (spinResult[1] == "Cherry") {
-                //Cherry will represenet "whistle" LOL
+                //Cherry will represenet "whistle" LOL************************
                 wheelTwoImage = new objects.Images("whistle", 300, 130, false);
                 stage.addChild(wheelTwoImage);
             }
             if (spinResult[1] == "Bar") {
-                // Bar will be represenent as cards
+                // Bar will be represenent as cards****************************
                 wheelTwoImage = new objects.Images("cards", 300, 130, false);
                 stage.addChild(wheelTwoImage);
             }
             if (spinResult[1] == "Bell") {
-                //Soccer ball will represent bell
+                //Soccer ball will represent bell******************************
                 wheelTwoImage = new objects.Images("ball", 300, 130, false);
                 stage.addChild(wheelTwoImage);
             }
             if (spinResult[1] == "Seven") {
-                //Sevens will be represent with soccerball with 7s
+                //Sevens will be represent with soccerball with 7s*************
                 wheelTwoImage = new objects.Images("s777", 300, 130, false);
                 stage.addChild(wheelTwoImage);
             }
-            //_______________________________________________________
-            //_______________________________________________________
+            //_______________________________________________________END OF WHEEL 2 IMAGES ONCE SPIN BUTTON IS CLICKED
+            //_______________________________________________________START OF WHEEL 3 IMAGES ONCE SPIN BUTTON IS CLICKED
             if (spinResult[2] == "blank") {
-                //"blank" is represent white image"
+                //"blank" is represent white image"*****************************
                 wheelThreeImage = new objects.Images("blank", 420, 130, false);
                 stage.addChild(wheelThreeImage);
             }
             if (spinResult[2] == "Grapes") {
-                //Grapes will be represented with cup
+                //Grapes will be represented with cup**************************
                 wheelThreeImage = new objects.Images("cup", 420, 130, false);
                 stage.addChild(wheelThreeImage);
             }
             if (spinResult[2] == "Banana") {
-                //Banana will represent flag
+                //Banana will represent flag***********************************
                 wheelThreeImage = new objects.Images("flag", 420, 130, false);
                 stage.addChild(wheelThreeImage);
             }
             if (spinResult[2] == "Orange") {
-                //Orange will represent stadium
+                //Orange will represent stadium*********************************
                 wheelThreeImage = new objects.Images("stadium", 420, 130, false);
                 stage.addChild(wheelThreeImage);
             }
             if (spinResult[2] == "Cherry") {
-                //Cherry will represenet "whistle" LOL
+                //Cherry will represenet "whistle" LOL**************************
                 wheelThreeImage = new objects.Images("whistle", 420, 130, false);
                 stage.addChild(wheelThreeImage);
             }
             if (spinResult[2] == "Bar") {
-                // Bar will be represenent as cards
+                // Bar will be represenent as cards*****************************
                 wheelTwoImage = new objects.Images("cards", 420, 130, false);
                 stage.addChild(wheelTwoImage);
             }
             if (spinResult[2] == "Bell") {
-                //Soccer ball will represent bell
+                //Soccer ball will represent bell*******************************
                 wheelThreeImage = new objects.Images("ball", 420, 130, false);
                 stage.addChild(wheelThreeImage);
             }
             if (spinResult[2] == "Seven") {
-                //Sevens will be represent with soccerball with 7s
+                //Sevens will be represent with soccerball with 7s**************
                 wheelThreeImage = new objects.Images("s777", 420, 130, false);
                 stage.addChild(wheelThreeImage);
             }
@@ -645,6 +653,7 @@ e.g. Bar - Orange - Banana */
             spinButtonState = false;
         }
     }
+    //check to see if player won jackpot
     function checkJackPot() {
         /* compare two random values */
         var jackPotTry = Math.floor(Math.random() * 51 + 1);
@@ -655,6 +664,7 @@ e.g. Bar - Orange - Banana */
             jackpot = 1000;
         }
     }
+    //Caclulate how much players wins. This is determined on what they spin from the wheel
     function determineWinnings() {
         if (blanks == 0) {
             if (grapes == 3) {
@@ -705,8 +715,7 @@ e.g. Bar - Orange - Banana */
             else {
                 winnings = playerBet * 1;
             }
-            //playerCreditLabel = (playerCreditAmount + winnings).toString();
-            //console.log("new money is: " +  (winnings + playerCreditAmount).toString());
+            //Player won something++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             playerCreditAmount = playerCreditAmount + winnings;
             //alert("you won " + winnings);
             console.log("you won:" + winnings.toString());
@@ -725,8 +734,7 @@ e.g. Bar - Orange - Banana */
             stage.addChild(jackpotLabel);
         }
         else {
-            //lossNumber++;
-            //showLossMessage();
+            //Player did not win anything from spin+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             //alert("You lose");
             //increase value of jackpot by amount player lost bet with
             jackpot = jackpot + playerBet;
@@ -741,7 +749,7 @@ e.g. Bar - Orange - Banana */
             jackpotLabel.x = 315;
             jackpotLabel.y = 217;
             stage.addChild(jackpotLabel);
-            //ue when game first loads)
+            //display zero because player did not win anything from spin)
             spinResultZero = new createjs.Text("0", "20px Consolas", "#ff0000");
             spinResultZero.regX = spinResultZero.getMeasuredWidth() * 0.5;
             spinResultZero.regY = spinResultZero.getMeasuredHeight() * 0.5;
@@ -750,13 +758,16 @@ e.g. Bar - Orange - Banana */
             stage.addChild(spinResultZero);
         }
     }
+    //reset game function.
     function resetGame() {
         location.reload();
     }
+    //power game off
     function gameOver() {
         alert("Thanks for playing the best game.\nCome back soon.");
         window.close();
     }
+    //reset values after spin to avoid error for next spin click
     function resetFruitTally() {
         grapes = 0;
         bananas = 0;
