@@ -12,55 +12,15 @@ var canvas = document.getElementById("canvas");
 var stage;
 var stats;
 var assets;
-var manifest = [
-    { id: "background", src: "assets/images/slotmachine.png" },
-    { id: "clicked", src: "assets/audio/clicked.wav" }
-];
+var manifest = [{ id: "background", src: "assets/images/slotmachine.png" }, { id: "clicked", src: "assets/audio/clicked.wav" }];
 var atlas = {
     "images": [
-        "assets/images/atlas.png"], "frames": [
-        [2, 2, 80, 112, 0, 0, 0],
-        [84, 2, 80, 105, 0, 0, 0],
-        [166, 2, 95, 97, 0, 0, 0],
-        [263, 2, 93, 97, 0, -1, -1],
-        [358, 2, 93, 94, 0, -2, 0],
-        [453, 2, 80, 88, 0, 0, 0],
-        [535, 2, 80, 85, 0, 0, 0],
-        [617, 2, 80, 84, 0, 0, 0],
-        [699, 2, 80, 78, 0, 0, 0],
-        [781, 2, 76, 76, 0, -2, -4],
-        [859, 2, 65, 67, 0, 0, 0],
-        [926, 2, 65, 67, 0, 0, 0],
-        [993, 2, 65, 66, 0, 0, 0],
-        [1060, 2, 65, 66, 0, 0, 0],
-        [1127, 2, 65, 66, 0, 0, 0],
-        [1194, 2, 64, 66, 0, 0, 0],
-        [1260, 2, 64, 66, 0, 0, 0],
-        [1326, 2, 64, 66, 0, 0, 0],
-        [1392, 2, 80, 62, 0, 0, 0]
-    ],
-    "animations": {
-        "777": [6],
-        "cup": [0],
-        "flag": [1],
-        "resetbutton": [2],
-        "powerbutton": [3],
-        "spin": [4],
-        "stadium": [5],
-        "blank": [7],
-        "whistle": [8],
-        "ball": [9],
-        "bet100": [10],
-        "bet50": [11],
-        "bet10": [12],
-        "bet25": [13],
-        "bet500": [14],
-        "bet1": [15],
-        "bet2": [16],
-        "bet5": [17],
-        "cards": [18]
-    }
-};
+        "assets/images/atlas.png"], "frames": [[2, 2, 80, 112, 0, 0, 0], [84, 2, 80, 105, 0, 0, 0], [166, 2, 95, 97, 0, 0, 0], [263, 2, 93, 97, 0, -1, -1],
+        [358, 2, 93, 94, 0, -2, 0], [453, 2, 80, 88, 0, 0, 0], [535, 2, 80, 85, 0, 0, 0], [617, 2, 80, 84, 0, 0, 0], [699, 2, 80, 78, 0, 0, 0], [781, 2, 76, 76, 0, -2, -4],
+        [859, 2, 65, 67, 0, 0, 0], [926, 2, 65, 67, 0, 0, 0], [993, 2, 65, 66, 0, 0, 0], [1060, 2, 65, 66, 0, 0, 0], [1127, 2, 65, 66, 0, 0, 0], [1194, 2, 64, 66, 0, 0, 0],
+        [1260, 2, 64, 66, 0, 0, 0], [1326, 2, 64, 66, 0, 0, 0], [1392, 2, 80, 62, 0, 0, 0]],
+    "animations": { "s777": [6], "cup": [0], "flag": [1], "resetbutton": [2], "powerbutton": [3], "spin": [4], "stadium": [5], "blank": [7], "whistle": [8],
+        "ball": [9], "bet100": [10], "bet50": [11], "bet10": [12], "bet25": [13], "bet500": [14], "bet1": [15], "bet2": [16], "bet5": [17], "cards": [18] } };
 // Game Variables
 var background;
 var textureAtlas;
@@ -101,6 +61,8 @@ var sevens = 0;
 var blanks = 0;
 var spinResult;
 var fruits = "";
+var playerBet = 0;
+var winnings = 0;
 var playerCreditAmount = 1000;
 var bet1Dollar = 1.0;
 var bet2Dollars = 2.0;
@@ -170,37 +132,37 @@ e.g. Bar - Orange - Banana */
         var betLine = [" ", " ", " "];
         var outCome = [0, 0, 0];
         for (var spin = 0; spin < 3; spin++) {
-            outCome[spin] = Math.floor((Math.random() * 65) + 1);
+            outCome[spin] = Math.floor((Math.random() * 29) + 1);
             switch (outCome[spin]) {
-                case checkRange(outCome[spin], 1, 27):
+                case checkRange(outCome[spin], 1, 2):
                     betLine[spin] = "blank";
                     blanks++;
                     break;
-                case checkRange(outCome[spin], 28, 37):
+                case checkRange(outCome[spin], 3, 14):
                     betLine[spin] = "Grapes";
                     grapes++;
                     break;
-                case checkRange(outCome[spin], 38, 46):
+                case checkRange(outCome[spin], 15, 17):
                     betLine[spin] = "Banana";
                     bananas++;
                     break;
-                case checkRange(outCome[spin], 47, 54):
+                case checkRange(outCome[spin], 18, 20):
                     betLine[spin] = "Orange";
                     oranges++;
                     break;
-                case checkRange(outCome[spin], 55, 59):
+                case checkRange(outCome[spin], 21, 24):
                     betLine[spin] = "Cherry";
                     cherries++;
                     break;
-                case checkRange(outCome[spin], 60, 62):
+                case checkRange(outCome[spin], 25, 26):
                     betLine[spin] = "Bar";
                     bars++;
                     break;
-                case checkRange(outCome[spin], 63, 64):
+                case checkRange(outCome[spin], 27, 28):
                     betLine[spin] = "Bell";
                     bells++;
                     break;
-                case checkRange(outCome[spin], 65, 65):
+                case checkRange(outCome[spin], 29, 29):
                     betLine[spin] = "Seven";
                     sevens++;
                     break;
@@ -209,7 +171,7 @@ e.g. Bar - Orange - Banana */
         return betLine;
     }
     function bet1ButtonClick(event) {
-        spinButtonState = true;
+        spinButtonState = false;
         bet1DollarState = true;
         bet2DollarState = false;
         bet5DollarState = false;
@@ -221,21 +183,23 @@ e.g. Bar - Orange - Banana */
         if (playerCreditAmount < 1) {
             alert("Not enough money to play...Good Game!!!");
             spinButtonState = false;
-            stage.removeChild(bet1);
+        }
+        if (playerCreditAmount >= 1) {
+            spinButtonState = true;
         }
         if ((bet1DollarState) && (spinButtonState)) {
+            playerBet = 1;
             playerCreditAmount = playerCreditAmount - bet1Dollar;
-            bet1DollarState = false;
+            stage.removeAllChildren();
+            main();
+            stage.removeChild(playerBetZero); //remove the "0" to avoid over loaping of selected bet value text
+            bet1Label = new createjs.Text("$1.00", "20px Consolas", "#ff0000");
+            bet1Label.regX = bet1Label.getMeasuredWidth() * 0.5;
+            bet1Label.regY = bet1Label.getMeasuredHeight() * 0.5;
+            bet1Label.x = 340;
+            bet1Label.y = 495;
+            stage.addChild(bet1Label);
         }
-        stage.removeAllChildren();
-        main();
-        stage.removeChild(playerBetZero);
-        bet1Label = new createjs.Text("$1.00", "20px Consolas", "#ff0000");
-        bet1Label.regX = bet1Label.getMeasuredWidth() * 0.5;
-        bet1Label.regY = bet1Label.getMeasuredHeight() * 0.5;
-        bet1Label.x = 340;
-        bet1Label.y = 495;
-        stage.addChild(bet1Label);
     }
     function bet2ButtonClick(event) {
         spinButtonState = true;
@@ -250,21 +214,23 @@ e.g. Bar - Orange - Banana */
         if (playerCreditAmount < 2) {
             alert("Not enough money to play with $2.00\nConsider playing with a smaller amount of money.");
             spinButtonState = false;
-            stage.removeChild(bet2);
+        }
+        if (playerCreditAmount >= 2) {
+            spinButtonState = true;
         }
         if ((bet2DollarState) && (spinButtonState)) {
+            playerBet = 2;
             playerCreditAmount = playerCreditAmount - bet2Dollars;
-            bet2DollarState = false;
+            stage.removeAllChildren();
+            main();
+            stage.removeChild(playerBetZero); //remove the "0" to avoid over loaping of selected bet value text
+            bet2Label = new createjs.Text("$2.00", "20px Consolas", "#ff0000");
+            bet2Label.regX = bet2Label.getMeasuredWidth() * 0.5;
+            bet2Label.regY = bet2Label.getMeasuredHeight() * 0.5;
+            bet2Label.x = 340;
+            bet2Label.y = 495;
+            stage.addChild(bet2Label);
         }
-        stage.removeAllChildren();
-        main();
-        stage.removeChild(playerBetZero);
-        bet2Label = new createjs.Text("$2.00", "20px Consolas", "#ff0000");
-        bet2Label.regX = bet2Label.getMeasuredWidth() * 0.5;
-        bet2Label.regY = bet2Label.getMeasuredHeight() * 0.5;
-        bet2Label.x = 340;
-        bet2Label.y = 495;
-        stage.addChild(bet2Label);
     }
     function bet5ButtonClick(event) {
         spinButtonState = true;
@@ -279,21 +245,23 @@ e.g. Bar - Orange - Banana */
         if (playerCreditAmount < 5) {
             alert("Not enough money to play with $5.00\nConsider playing with a smaller amount of money.");
             spinButtonState = false;
-            stage.removeChild(bet5);
+        }
+        if (playerCreditAmount >= 5) {
+            spinButtonState = true;
         }
         if ((bet5DollarState) && (spinButtonState)) {
+            playerBet = 5;
             playerCreditAmount = playerCreditAmount - bet5Dollars;
-            bet5DollarState = false;
+            stage.removeAllChildren();
+            main();
+            stage.removeChild(playerBetZero);
+            bet5Label = new createjs.Text("$5.00", "20px Consolas", "#ff0000");
+            bet5Label.regX = bet5Label.getMeasuredWidth() * 0.5;
+            bet5Label.regY = bet5Label.getMeasuredHeight() * 0.5;
+            bet5Label.x = 340;
+            bet5Label.y = 495;
+            stage.addChild(bet5Label);
         }
-        stage.removeAllChildren();
-        main();
-        stage.removeChild(playerBetZero);
-        bet5Label = new createjs.Text("$5.00", "20px Consolas", "#ff0000");
-        bet5Label.regX = bet5Label.getMeasuredWidth() * 0.5;
-        bet5Label.regY = bet5Label.getMeasuredHeight() * 0.5;
-        bet5Label.x = 340;
-        bet5Label.y = 495;
-        stage.addChild(bet5Label);
     }
     function bet10ButtonClick(event) {
         spinButtonState = true;
@@ -308,21 +276,23 @@ e.g. Bar - Orange - Banana */
         if (playerCreditAmount < 10) {
             alert("Not enough money to play with $10.00\nConsider playing with a smaller amount of money.");
             spinButtonState = false;
-            stage.removeChild(bet10);
+        }
+        if (playerCreditAmount >= 10) {
+            spinButtonState = true;
         }
         if ((bet10DollarState) && (spinButtonState)) {
+            playerBet = 10;
             playerCreditAmount = playerCreditAmount - bet10Dollars;
-            bet10DollarState = false;
+            stage.removeAllChildren();
+            main();
+            stage.removeChild(playerBetZero);
+            bet10Label = new createjs.Text("$10.00", "20px Consolas", "#ff0000");
+            bet10Label.regX = bet10Label.getMeasuredWidth() * 0.5;
+            bet10Label.regY = bet10Label.getMeasuredHeight() * 0.5;
+            bet10Label.x = 340;
+            bet10Label.y = 495;
+            stage.addChild(bet10Label);
         }
-        stage.removeAllChildren();
-        main();
-        stage.removeChild(playerBetZero);
-        bet10Label = new createjs.Text("$10.00", "20px Consolas", "#ff0000");
-        bet10Label.regX = bet10Label.getMeasuredWidth() * 0.5;
-        bet10Label.regY = bet10Label.getMeasuredHeight() * 0.5;
-        bet10Label.x = 340;
-        bet10Label.y = 495;
-        stage.addChild(bet10Label);
     }
     function bet25ButtonClick(event) {
         spinButtonState = true;
@@ -337,21 +307,23 @@ e.g. Bar - Orange - Banana */
         if (playerCreditAmount < 25) {
             alert("Not enough money to play with $25.00\nConsider playing with a smaller amount of money.");
             spinButtonState = false;
-            stage.removeChild(bet25);
+        }
+        if (playerCreditAmount >= 25) {
+            spinButtonState = true;
         }
         if ((bet25DollarState) && (spinButtonState)) {
+            playerBet = 25;
             playerCreditAmount = playerCreditAmount - bet25Dollars;
-            bet25DollarState = false;
+            stage.removeAllChildren();
+            main();
+            stage.removeChild(playerBetZero);
+            bet25Label = new createjs.Text("$25.00", "20px Consolas", "#ff0000");
+            bet25Label.regX = bet25Label.getMeasuredWidth() * 0.5;
+            bet25Label.regY = bet25Label.getMeasuredHeight() * 0.5;
+            bet25Label.x = 340;
+            bet25Label.y = 495;
+            stage.addChild(bet25Label);
         }
-        stage.removeAllChildren();
-        main();
-        stage.removeChild(playerBetZero);
-        bet25Label = new createjs.Text("$25.00", "20px Consolas", "#ff0000");
-        bet25Label.regX = bet25Label.getMeasuredWidth() * 0.5;
-        bet25Label.regY = bet25Label.getMeasuredHeight() * 0.5;
-        bet25Label.x = 340;
-        bet25Label.y = 495;
-        stage.addChild(bet25Label);
     }
     function bet50ButtonClick(event) {
         spinButtonState = true;
@@ -366,21 +338,23 @@ e.g. Bar - Orange - Banana */
         if (playerCreditAmount < 50) {
             alert("Not enough money to play with $50.00\nConsider playing with a smaller amount of money.");
             spinButtonState = false;
-            stage.removeChild(bet50);
+        }
+        if (playerCreditAmount >= 50) {
+            spinButtonState = true;
         }
         if ((bet50DollarState) && (spinButtonState)) {
+            playerBet = 50;
             playerCreditAmount = playerCreditAmount - bet50Dollars;
-            bet50DollarState = false;
+            stage.removeAllChildren();
+            main();
+            stage.removeChild(playerBetZero);
+            bet50Label = new createjs.Text("$50.00", "20px Consolas", "#ff0000");
+            bet50Label.regX = bet50Label.getMeasuredWidth() * 0.5;
+            bet50Label.regY = bet50Label.getMeasuredHeight() * 0.5;
+            bet50Label.x = 340;
+            bet50Label.y = 495;
+            stage.addChild(bet50Label);
         }
-        stage.removeAllChildren();
-        main();
-        stage.removeChild(playerBetZero);
-        bet50Label = new createjs.Text("$50.00", "20px Consolas", "#ff0000");
-        bet50Label.regX = bet50Label.getMeasuredWidth() * 0.5;
-        bet50Label.regY = bet50Label.getMeasuredHeight() * 0.5;
-        bet50Label.x = 340;
-        bet50Label.y = 495;
-        stage.addChild(bet50Label);
     }
     function bet100ButtonClick(event) {
         spinButtonState = true;
@@ -395,21 +369,23 @@ e.g. Bar - Orange - Banana */
         if (playerCreditAmount < 100) {
             alert("Not enough money to play with $100.00\nConsider playing with a smaller amount of money.");
             spinButtonState = false;
-            stage.removeChild(bet100);
+        }
+        if (playerCreditAmount >= 100) {
+            spinButtonState = true;
         }
         if ((bet100DollarState) && (spinButtonState)) {
+            playerBet = 100;
             playerCreditAmount = playerCreditAmount - bet100Dollars;
-            bet100DollarState = false;
+            stage.removeAllChildren();
+            main();
+            stage.removeChild(playerBetZero);
+            bet100Label = new createjs.Text("$100.00", "20px Consolas", "#ff0000");
+            bet100Label.regX = bet100Label.getMeasuredWidth() * 0.5;
+            bet100Label.regY = bet100Label.getMeasuredHeight() * 0.5;
+            bet100Label.x = 340;
+            bet100Label.y = 495;
+            stage.addChild(bet100Label);
         }
-        stage.removeAllChildren();
-        main();
-        stage.removeChild(playerBetZero);
-        bet100Label = new createjs.Text("$100.00", "20px Consolas", "#ff0000");
-        bet100Label.regX = bet100Label.getMeasuredWidth() * 0.5;
-        bet100Label.regY = bet100Label.getMeasuredHeight() * 0.5;
-        bet100Label.x = 340;
-        bet100Label.y = 495;
-        stage.addChild(bet100Label);
     }
     function bet500ButtonClick(event) {
         spinButtonState = true;
@@ -424,20 +400,23 @@ e.g. Bar - Orange - Banana */
         if (playerCreditAmount < 500) {
             alert("Not enough money to play with $500.00\nConsider playing with a smaller amount of money.");
             spinButtonState = false;
-            stage.removeChild(bet500);
+        }
+        if (playerCreditAmount >= 500) {
+            spinButtonState = true;
         }
         if ((bet500DollarState) && (spinButtonState)) {
+            playerBet = 500;
             playerCreditAmount = playerCreditAmount - bet500Dollars;
+            stage.removeAllChildren();
+            main();
+            stage.removeChild(playerBetZero);
+            bet500Label = new createjs.Text("$500.00", "20px Consolas", "#ff0000");
+            bet500Label.regX = bet500Label.getMeasuredWidth() * 0.5;
+            bet500Label.regY = bet500Label.getMeasuredHeight() * 0.5;
+            bet500Label.x = 340;
+            bet500Label.y = 495;
+            stage.addChild(bet500Label);
         }
-        stage.removeAllChildren();
-        main();
-        stage.removeChild(playerBetZero);
-        bet500Label = new createjs.Text("$500.00", "20px Consolas", "#ff0000");
-        bet500Label.regX = bet500Label.getMeasuredWidth() * 0.5;
-        bet500Label.regY = bet500Label.getMeasuredHeight() * 0.5;
-        bet500Label.x = 340;
-        bet500Label.y = 495;
-        stage.addChild(bet500Label);
     }
     //callback function that allows me to respond to button click events
     function spinButtonClicked(event) {
@@ -484,13 +463,13 @@ e.g. Bar - Orange - Banana */
                 stage.addChild(wheelOneImage);
             }
             if (spinResult[0] == "Bell") {
-                //Soccer ball will represent bell
+                //Bell will be represent by ball
                 wheelOneImage = new objects.Images("ball", 180, 130, false);
                 stage.addChild(wheelOneImage);
             }
             if (spinResult[0] == "Seven") {
                 //Sevens will be represent with soccerball with 7s
-                wheelOneImage = new objects.Images("777", 180, 130, false);
+                wheelOneImage = new objects.Images("s777", 180, 130, false);
                 stage.addChild(wheelOneImage);
             }
             //_______________________________________________________
@@ -532,7 +511,7 @@ e.g. Bar - Orange - Banana */
             }
             if (spinResult[1] == "Seven") {
                 //Sevens will be represent with soccerball with 7s
-                wheelTwoImage = new objects.Images("777", 300, 130, false);
+                wheelTwoImage = new objects.Images("s777", 300, 130, false);
                 stage.addChild(wheelTwoImage);
             }
             //_______________________________________________________
@@ -574,16 +553,91 @@ e.g. Bar - Orange - Banana */
             }
             if (spinResult[2] == "Seven") {
                 //Sevens will be represent with soccerball with 7s
-                wheelThreeImage = new objects.Images("777", 420, 130, false);
+                wheelThreeImage = new objects.Images("s777", 420, 130, false);
                 stage.addChild(wheelThreeImage);
             }
+            determineWinnings();
+            playerBet = 0;
             spinButtonState = false;
         }
     }
-    //callback function that cahnges the alpha transparency of the button
-    //mouseover event
+    function determineWinnings() {
+        if (blanks == 0) {
+            if (grapes == 3) {
+                winnings = playerBet * 10;
+            }
+            else if (bananas == 3) {
+                winnings = playerBet * 20;
+            }
+            else if (oranges == 3) {
+                winnings = playerBet * 30;
+            }
+            else if (cherries == 3) {
+                winnings = playerBet * 40;
+            }
+            else if (bars == 3) {
+                winnings = playerBet * 50;
+            }
+            else if (bells == 3) {
+                winnings = playerBet * 75;
+            }
+            else if (sevens == 3) {
+                winnings = playerBet * 100;
+            }
+            else if (grapes == 2) {
+                winnings = playerBet * 2;
+            }
+            else if (bananas == 2) {
+                winnings = playerBet * 2;
+            }
+            else if (oranges == 2) {
+                winnings = playerBet * 3;
+            }
+            else if (cherries == 2) {
+                winnings = playerBet * 4;
+            }
+            else if (bars == 2) {
+                winnings = playerBet * 5;
+            }
+            else if (bells == 2) {
+                winnings = playerBet * 10;
+            }
+            else if (sevens == 2) {
+                winnings = playerBet * 20;
+            }
+            else if (sevens == 1) {
+                winnings = playerBet * 5;
+            }
+            else {
+                winnings = playerBet * 1;
+            }
+            //playerCreditLabel = (playerCreditAmount + winnings).toString();
+            //console.log("new money is: " +  (winnings + playerCreditAmount).toString());
+            playerCreditAmount = playerCreditAmount + winnings;
+            alert("you won " + winnings);
+            console.log("you won:" + winnings.toString());
+            resetFruitTally();
+        }
+        else {
+            //lossNumber++;
+            //showLossMessage();
+            resetFruitTally();
+            alert("You lose");
+        }
+    }
+    function resetFruitTally() {
+        grapes = 0;
+        bananas = 0;
+        oranges = 0;
+        cherries = 0;
+        bars = 0;
+        bells = 0;
+        sevens = 0;
+        blanks = 0;
+    }
     // Our Main Game Function
     function main() {
+        //playerBet = 0;
         //add in slot matchine 
         background = new createjs.Bitmap(assets.getResult("background"));
         stage.addChild(background);
@@ -647,7 +701,7 @@ e.g. Bar - Orange - Banana */
         bet100 = new objects.Button("bet100", 440, 410, false);
         stage.addChild(bet100);
         bet100.on("click", bet100ButtonClick, this);
-        //add bet1 button
+        //add bet500 button
         bet500 = new objects.Button("bet500", 510, 410, false);
         stage.addChild(bet500);
         bet500.on("click", bet500ButtonClick, this);
