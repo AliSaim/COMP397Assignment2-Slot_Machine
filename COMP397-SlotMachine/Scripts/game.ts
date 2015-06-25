@@ -51,7 +51,7 @@ var spinResultZero: objects.Label;
 var grapes = 0; var bananas = 0; var oranges = 0; var cherries = 0; var bars = 0; var bells = 0;
 var sevens = 0; var blanks = 0; var spinResult; var fruits = ""; var playerBet = 0; var winnings = 0;
 
-var playerCreditAmount = 1000;
+var playerCreditAmount = 1000; var jackpot = 5000;
 
 var bet1Dollar = 1.0;       var bet2Dollars = 2.0;      var bet5Dollars = 5.0;      var bet10Dollars = 10.0;
 var bet25Dollars = 25.0;    var bet50Dollars = 50.0;    var bet100Dollars = 100.0;  var bet500Dollars = 500.0;
@@ -106,11 +106,11 @@ e.g. Bar - Orange - Banana */
         for (var spin = 0; spin < 3; spin++) {
             outCome[spin] = Math.floor((Math.random() * 29) + 1);
             switch (outCome[spin]) {
-                case checkRange(outCome[spin], 1, 2):  // 41.5% probability
+                case checkRange(outCome[spin], 1, 7):  // 41.5% probability
                     betLine[spin] = "blank";
                     blanks++;
                     break;
-                case checkRange(outCome[spin], 3, 14): // 15.4% probability
+                case checkRange(outCome[spin], 8, 14): // 15.4% probability
                     betLine[spin] = "Grapes";
                     grapes++;
                     break;
@@ -145,9 +145,22 @@ e.g. Bar - Orange - Banana */
 
 
     function bet1ButtonClick(event: createjs.MouseEvent) {
+
+        //main();
+        stage.removeChild(jackpotLabel);
+        stage.removeChild(spinResult);
+
+        //add jackpot label
+        jackpotLabel = new createjs.Text(jackpot.toString() + ".00", "25px Consolas", "#ff0000");
+        jackpotLabel.regX = jackpotLabel.getMeasuredWidth() * 0.5;
+        jackpotLabel.regY = jackpotLabel.getMeasuredHeight() * 0.5;
+        jackpotLabel.x = 315;
+        jackpotLabel.y = 217;
+        stage.addChild(jackpotLabel);
+
         spinButtonState = false;    bet1DollarState = true;   bet2DollarState = false;
         bet5DollarState = false;   bet10DollarState = false;  bet25DollarState = false;
-        bet50DollarState = false;  bet100DollarState = false; bet500DollarState = false;
+        bet50DollarState = false; bet100DollarState = false; bet500DollarState = false;
         
          if (playerCreditAmount < 1) {
              alert("Not enough money to play...Good Game!!!");
@@ -175,6 +188,18 @@ e.g. Bar - Orange - Banana */
     }
 
     function bet2ButtonClick(event: createjs.MouseEvent) {
+
+        //main();
+        stage.removeChild(jackpotLabel);
+        stage.removeChild(spinResult);
+        //add jackpot label
+        jackpotLabel = new createjs.Text(jackpot.toString() + ".00", "25px Consolas", "#ff0000");
+        jackpotLabel.regX = jackpotLabel.getMeasuredWidth() * 0.5;
+        jackpotLabel.regY = jackpotLabel.getMeasuredHeight() * 0.5;
+        jackpotLabel.x = 315;
+        jackpotLabel.y = 217;
+        stage.addChild(jackpotLabel);
+
          spinButtonState = true;     bet1DollarState = false;       bet2DollarState = true;
          bet5DollarState = false;    bet10DollarState = false;      bet25DollarState = false;
          bet50DollarState = false;   bet100DollarState = false;     bet500DollarState = false;
@@ -205,6 +230,18 @@ e.g. Bar - Orange - Banana */
     }
 
     function bet5ButtonClick(event: createjs.MouseEvent) {
+        //main();
+        stage.removeChild(jackpotLabel);
+        stage.removeChild(spinResult);
+
+        //add jackpot label
+        jackpotLabel = new createjs.Text(jackpot.toString() + ".00", "25px Consolas", "#ff0000");
+        jackpotLabel.regX = jackpotLabel.getMeasuredWidth() * 0.5;
+        jackpotLabel.regY = jackpotLabel.getMeasuredHeight() * 0.5;
+        jackpotLabel.x = 315;
+        jackpotLabel.y = 217;
+        stage.addChild(jackpotLabel);
+
         spinButtonState = true;         bet1DollarState = false;    bet2DollarState = false;        bet5DollarState = true;     bet10DollarState = false;
         bet25DollarState = false;       bet50DollarState = false;   bet100DollarState = false;      bet500DollarState = false;
 
@@ -232,6 +269,18 @@ e.g. Bar - Orange - Banana */
     }
 
     function bet10ButtonClick(event: createjs.MouseEvent) {
+        //main();
+        stage.removeChild(jackpotLabel);
+        stage.removeChild(spinResult);
+
+        //add jackpot label
+        jackpotLabel = new createjs.Text(jackpot.toString() + ".00", "25px Consolas", "#ff0000");
+        jackpotLabel.regX = jackpotLabel.getMeasuredWidth() * 0.5;
+        jackpotLabel.regY = jackpotLabel.getMeasuredHeight() * 0.5;
+        jackpotLabel.x = 315;
+        jackpotLabel.y = 217;
+        stage.addChild(jackpotLabel);
+
         spinButtonState = true;     bet1DollarState = false;    bet2DollarState = false;        bet5DollarState = false;    bet10DollarState = true;
         bet25DollarState = false;   bet50DollarState = false;   bet100DollarState = false;      bet500DollarState = false;
 
@@ -259,6 +308,17 @@ e.g. Bar - Orange - Banana */
     }
 
     function bet25ButtonClick(event: createjs.MouseEvent) {
+        //main();
+        stage.removeChild(jackpotLabel);
+        stage.removeChild(spinResult);
+
+        //add jackpot label
+        jackpotLabel = new createjs.Text(jackpot.toString() + ".00", "25px Consolas", "#ff0000");
+        jackpotLabel.regX = jackpotLabel.getMeasuredWidth() * 0.5;
+        jackpotLabel.regY = jackpotLabel.getMeasuredHeight() * 0.5;
+        jackpotLabel.x = 315;
+        jackpotLabel.y = 217;
+        stage.addChild(jackpotLabel);
         spinButtonState = true;      bet1DollarState = false;    bet2DollarState = false;     bet5DollarState = false;
         bet10DollarState = false;    bet25DollarState = true;    bet50DollarState = false;    bet100DollarState = false;  bet500DollarState = false;
 
@@ -287,6 +347,17 @@ e.g. Bar - Orange - Banana */
     }
 
     function bet50ButtonClick(event: createjs.MouseEvent) {
+        //main();
+        stage.removeChild(jackpotLabel);
+        stage.removeChild(spinResult);
+
+        //add jackpot label
+        jackpotLabel = new createjs.Text(jackpot.toString() + ".00", "25px Consolas", "#ff0000");
+        jackpotLabel.regX = jackpotLabel.getMeasuredWidth() * 0.5;
+        jackpotLabel.regY = jackpotLabel.getMeasuredHeight() * 0.5;
+        jackpotLabel.x = 315;
+        jackpotLabel.y = 217;
+        stage.addChild(jackpotLabel);
         spinButtonState = true;     bet1DollarState = false;    bet2DollarState = false;    bet5DollarState = false;
         bet10DollarState = false;   bet25DollarState = false;   bet50DollarState = true;    bet100DollarState = false;  bet500DollarState = false;
 
@@ -315,6 +386,17 @@ e.g. Bar - Orange - Banana */
     }
 
     function bet100ButtonClick(event: createjs.MouseEvent) {
+        //main();
+        stage.removeChild(jackpotLabel);
+        stage.removeChild(spinResult);
+
+        //add jackpot label
+        jackpotLabel = new createjs.Text(jackpot.toString() + ".00", "25px Consolas", "#ff0000");
+        jackpotLabel.regX = jackpotLabel.getMeasuredWidth() * 0.5;
+        jackpotLabel.regY = jackpotLabel.getMeasuredHeight() * 0.5;
+        jackpotLabel.x = 315;
+        jackpotLabel.y = 217;
+        stage.addChild(jackpotLabel);
         spinButtonState = true;     bet1DollarState = false;    bet2DollarState = false;    bet5DollarState = false;
         bet10DollarState = false;   bet25DollarState = false;   bet50DollarState = false;   bet100DollarState = true;    bet500DollarState = false;
 
@@ -342,6 +424,18 @@ e.g. Bar - Orange - Banana */
     }
 
     function bet500ButtonClick(event: createjs.MouseEvent) {
+        //main();
+
+        stage.removeChild(spinResult);
+        stage.removeChild(jackpotLabel);
+
+        //add jackpot label
+        jackpotLabel = new createjs.Text(jackpot.toString() + ".00", "25px Consolas", "#ff0000");
+        jackpotLabel.regX = jackpotLabel.getMeasuredWidth() * 0.5;
+        jackpotLabel.regY = jackpotLabel.getMeasuredHeight() * 0.5;
+        jackpotLabel.x = 315;
+        jackpotLabel.y = 217;
+        stage.addChild(jackpotLabel);
         spinButtonState = true;     bet1DollarState = false;    bet2DollarState = false;    bet5DollarState = false;
         bet10DollarState = false;   bet25DollarState = false;   bet50DollarState = false;   bet100DollarState = false;  bet500DollarState = true;
 
@@ -370,6 +464,8 @@ e.g. Bar - Orange - Banana */
 
     //callback function that allows me to respond to button click events
     function spinButtonClicked(event: createjs.MouseEvent) {
+
+        stage.removeChild(spinResult);
 
         if (spinButtonState == false)
         {
@@ -538,6 +634,17 @@ e.g. Bar - Orange - Banana */
         }
     }
 
+    function checkJackPot() {
+        /* compare two random values */
+        var jackPotTry = Math.floor(Math.random() * 51 + 1);
+        var jackPotWin = Math.floor(Math.random() * 51 + 1);
+        if (jackPotTry == jackPotWin) {
+            alert("You Won the $" + jackpot + " Jackpot!!");
+            playerCreditAmount += jackpot;
+            jackpot = 1000;
+        }
+    }
+
 
     function determineWinnings() {
         if (blanks == 0) {
@@ -563,15 +670,56 @@ e.g. Bar - Orange - Banana */
             //alert("you won " + winnings);
             console.log("you won:" + winnings.toString());
             resetFruitTally();
-            main();
+            checkJackPot();
+            jackpot = jackpot;
+
+            
+            stage.removeChild(jackpotLabel);
+
+            stage.removeChild(spinResult); main();
+
+            //add jackpot label
+            jackpotLabel = new createjs.Text("$" + jackpot.toString() + ".00", "25px Consolas", "#ff0000");
+            jackpotLabel.regX = jackpotLabel.getMeasuredWidth() * 0.5;
+            jackpotLabel.regY = jackpotLabel.getMeasuredHeight() * 0.5;
+            jackpotLabel.x = 315;
+            jackpotLabel.y = 217;
+            stage.addChild(jackpotLabel);
+
         }
         else {
             //lossNumber++;
             //showLossMessage();
-            resetFruitTally();
-            //alert("You lose");
             
+            //alert("You lose");
+            //increase value of jackpot by amount player lost bet with
+            jackpot = jackpot + playerBet;
+            resetFruitTally();
             main();
+
+            stage.removeChild(jackpotLabel);
+            stage.removeChild(spinResult);
+
+            //add jackpot label
+            jackpotLabel = new createjs.Text("$" + jackpot.toString() + ".00", "25px Consolas", "#ff0000");
+            jackpotLabel.regX = jackpotLabel.getMeasuredWidth() * 0.5;
+            jackpotLabel.regY = jackpotLabel.getMeasuredHeight() * 0.5;
+            jackpotLabel.x = 315;
+            jackpotLabel.y = 217;
+            stage.addChild(jackpotLabel);
+
+            //ue when game first loads)
+            spinResultZero = new createjs.Text("0", "20px Consolas", "#ff0000");
+            spinResultZero.regX = spinResultZero.getMeasuredWidth() * 0.5;
+            spinResultZero.regY = spinResultZero.getMeasuredHeight() * 0.5;
+            spinResultZero.x = 550;
+            spinResultZero.y = 495;
+            stage.addChild(spinResultZero);
+
+
+
+
+
         }
     }
 
@@ -599,7 +747,7 @@ e.g. Bar - Orange - Banana */
         spinButton.on("click", spinButtonClicked, this);
 
         //add player credits label
-        playerCreditLabel = new createjs.Text(playerCreditAmount.toString(), "20px Consolas", "#ff0000");
+        playerCreditLabel = new createjs.Text("$" + playerCreditAmount.toString()+ ".00", "20px Consolas", "#ff0000");
         playerCreditLabel.regX = playerCreditLabel.getMeasuredWidth() * 0.5;
         playerCreditLabel.regY = playerCreditLabel.getMeasuredHeight() * 0.5;
         playerCreditLabel.x = 125;
@@ -607,7 +755,7 @@ e.g. Bar - Orange - Banana */
         stage.addChild(playerCreditLabel);
 
         //add jackpot label
-        jackpotLabel = new createjs.Text("$50000.00", "25px Consolas", "#ff0000");
+        jackpotLabel = new createjs.Text("$"+jackpot.toString() + ".00", "25px Consolas", "#ff0000");
         jackpotLabel.regX = jackpotLabel.getMeasuredWidth() * 0.5;
         jackpotLabel.regY = jackpotLabel.getMeasuredHeight() * 0.5;
         jackpotLabel.x = 315;

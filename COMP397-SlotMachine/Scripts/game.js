@@ -64,6 +64,7 @@ var fruits = "";
 var playerBet = 0;
 var winnings = 0;
 var playerCreditAmount = 1000;
+var jackpot = 5000;
 var bet1Dollar = 1.0;
 var bet2Dollars = 2.0;
 var bet5Dollars = 5.0;
@@ -134,11 +135,11 @@ e.g. Bar - Orange - Banana */
         for (var spin = 0; spin < 3; spin++) {
             outCome[spin] = Math.floor((Math.random() * 29) + 1);
             switch (outCome[spin]) {
-                case checkRange(outCome[spin], 1, 2):
+                case checkRange(outCome[spin], 1, 7):
                     betLine[spin] = "blank";
                     blanks++;
                     break;
-                case checkRange(outCome[spin], 3, 14):
+                case checkRange(outCome[spin], 8, 14):
                     betLine[spin] = "Grapes";
                     grapes++;
                     break;
@@ -171,6 +172,16 @@ e.g. Bar - Orange - Banana */
         return betLine;
     }
     function bet1ButtonClick(event) {
+        //main();
+        stage.removeChild(jackpotLabel);
+        stage.removeChild(spinResult);
+        //add jackpot label
+        jackpotLabel = new createjs.Text(jackpot.toString() + ".00", "25px Consolas", "#ff0000");
+        jackpotLabel.regX = jackpotLabel.getMeasuredWidth() * 0.5;
+        jackpotLabel.regY = jackpotLabel.getMeasuredHeight() * 0.5;
+        jackpotLabel.x = 315;
+        jackpotLabel.y = 217;
+        stage.addChild(jackpotLabel);
         spinButtonState = false;
         bet1DollarState = true;
         bet2DollarState = false;
@@ -202,6 +213,16 @@ e.g. Bar - Orange - Banana */
         }
     }
     function bet2ButtonClick(event) {
+        //main();
+        stage.removeChild(jackpotLabel);
+        stage.removeChild(spinResult);
+        //add jackpot label
+        jackpotLabel = new createjs.Text(jackpot.toString() + ".00", "25px Consolas", "#ff0000");
+        jackpotLabel.regX = jackpotLabel.getMeasuredWidth() * 0.5;
+        jackpotLabel.regY = jackpotLabel.getMeasuredHeight() * 0.5;
+        jackpotLabel.x = 315;
+        jackpotLabel.y = 217;
+        stage.addChild(jackpotLabel);
         spinButtonState = true;
         bet1DollarState = false;
         bet2DollarState = true;
@@ -233,6 +254,16 @@ e.g. Bar - Orange - Banana */
         }
     }
     function bet5ButtonClick(event) {
+        //main();
+        stage.removeChild(jackpotLabel);
+        stage.removeChild(spinResult);
+        //add jackpot label
+        jackpotLabel = new createjs.Text(jackpot.toString() + ".00", "25px Consolas", "#ff0000");
+        jackpotLabel.regX = jackpotLabel.getMeasuredWidth() * 0.5;
+        jackpotLabel.regY = jackpotLabel.getMeasuredHeight() * 0.5;
+        jackpotLabel.x = 315;
+        jackpotLabel.y = 217;
+        stage.addChild(jackpotLabel);
         spinButtonState = true;
         bet1DollarState = false;
         bet2DollarState = false;
@@ -264,6 +295,16 @@ e.g. Bar - Orange - Banana */
         }
     }
     function bet10ButtonClick(event) {
+        //main();
+        stage.removeChild(jackpotLabel);
+        stage.removeChild(spinResult);
+        //add jackpot label
+        jackpotLabel = new createjs.Text(jackpot.toString() + ".00", "25px Consolas", "#ff0000");
+        jackpotLabel.regX = jackpotLabel.getMeasuredWidth() * 0.5;
+        jackpotLabel.regY = jackpotLabel.getMeasuredHeight() * 0.5;
+        jackpotLabel.x = 315;
+        jackpotLabel.y = 217;
+        stage.addChild(jackpotLabel);
         spinButtonState = true;
         bet1DollarState = false;
         bet2DollarState = false;
@@ -295,6 +336,16 @@ e.g. Bar - Orange - Banana */
         }
     }
     function bet25ButtonClick(event) {
+        //main();
+        stage.removeChild(jackpotLabel);
+        stage.removeChild(spinResult);
+        //add jackpot label
+        jackpotLabel = new createjs.Text(jackpot.toString() + ".00", "25px Consolas", "#ff0000");
+        jackpotLabel.regX = jackpotLabel.getMeasuredWidth() * 0.5;
+        jackpotLabel.regY = jackpotLabel.getMeasuredHeight() * 0.5;
+        jackpotLabel.x = 315;
+        jackpotLabel.y = 217;
+        stage.addChild(jackpotLabel);
         spinButtonState = true;
         bet1DollarState = false;
         bet2DollarState = false;
@@ -326,6 +377,16 @@ e.g. Bar - Orange - Banana */
         }
     }
     function bet50ButtonClick(event) {
+        //main();
+        stage.removeChild(jackpotLabel);
+        stage.removeChild(spinResult);
+        //add jackpot label
+        jackpotLabel = new createjs.Text(jackpot.toString() + ".00", "25px Consolas", "#ff0000");
+        jackpotLabel.regX = jackpotLabel.getMeasuredWidth() * 0.5;
+        jackpotLabel.regY = jackpotLabel.getMeasuredHeight() * 0.5;
+        jackpotLabel.x = 315;
+        jackpotLabel.y = 217;
+        stage.addChild(jackpotLabel);
         spinButtonState = true;
         bet1DollarState = false;
         bet2DollarState = false;
@@ -357,6 +418,16 @@ e.g. Bar - Orange - Banana */
         }
     }
     function bet100ButtonClick(event) {
+        //main();
+        stage.removeChild(jackpotLabel);
+        stage.removeChild(spinResult);
+        //add jackpot label
+        jackpotLabel = new createjs.Text(jackpot.toString() + ".00", "25px Consolas", "#ff0000");
+        jackpotLabel.regX = jackpotLabel.getMeasuredWidth() * 0.5;
+        jackpotLabel.regY = jackpotLabel.getMeasuredHeight() * 0.5;
+        jackpotLabel.x = 315;
+        jackpotLabel.y = 217;
+        stage.addChild(jackpotLabel);
         spinButtonState = true;
         bet1DollarState = false;
         bet2DollarState = false;
@@ -388,6 +459,16 @@ e.g. Bar - Orange - Banana */
         }
     }
     function bet500ButtonClick(event) {
+        //main();
+        stage.removeChild(spinResult);
+        stage.removeChild(jackpotLabel);
+        //add jackpot label
+        jackpotLabel = new createjs.Text(jackpot.toString() + ".00", "25px Consolas", "#ff0000");
+        jackpotLabel.regX = jackpotLabel.getMeasuredWidth() * 0.5;
+        jackpotLabel.regY = jackpotLabel.getMeasuredHeight() * 0.5;
+        jackpotLabel.x = 315;
+        jackpotLabel.y = 217;
+        stage.addChild(jackpotLabel);
         spinButtonState = true;
         bet1DollarState = false;
         bet2DollarState = false;
@@ -420,6 +501,7 @@ e.g. Bar - Orange - Banana */
     }
     //callback function that allows me to respond to button click events
     function spinButtonClicked(event) {
+        stage.removeChild(spinResult);
         if (spinButtonState == false) {
             alert("Please select an amount first.");
         }
@@ -561,6 +643,16 @@ e.g. Bar - Orange - Banana */
             spinButtonState = false;
         }
     }
+    function checkJackPot() {
+        /* compare two random values */
+        var jackPotTry = Math.floor(Math.random() * 51 + 1);
+        var jackPotWin = Math.floor(Math.random() * 51 + 1);
+        if (jackPotTry == jackPotWin) {
+            alert("You Won the $" + jackpot + " Jackpot!!");
+            playerCreditAmount += jackpot;
+            jackpot = 1000;
+        }
+    }
     function determineWinnings() {
         if (blanks == 0) {
             if (grapes == 3) {
@@ -617,14 +709,43 @@ e.g. Bar - Orange - Banana */
             //alert("you won " + winnings);
             console.log("you won:" + winnings.toString());
             resetFruitTally();
+            checkJackPot();
+            jackpot = jackpot;
+            stage.removeChild(jackpotLabel);
+            stage.removeChild(spinResult);
             main();
+            //add jackpot label
+            jackpotLabel = new createjs.Text("$" + jackpot.toString() + ".00", "25px Consolas", "#ff0000");
+            jackpotLabel.regX = jackpotLabel.getMeasuredWidth() * 0.5;
+            jackpotLabel.regY = jackpotLabel.getMeasuredHeight() * 0.5;
+            jackpotLabel.x = 315;
+            jackpotLabel.y = 217;
+            stage.addChild(jackpotLabel);
         }
         else {
             //lossNumber++;
             //showLossMessage();
-            resetFruitTally();
             //alert("You lose");
+            //increase value of jackpot by amount player lost bet with
+            jackpot = jackpot + playerBet;
+            resetFruitTally();
             main();
+            stage.removeChild(jackpotLabel);
+            stage.removeChild(spinResult);
+            //add jackpot label
+            jackpotLabel = new createjs.Text("$" + jackpot.toString() + ".00", "25px Consolas", "#ff0000");
+            jackpotLabel.regX = jackpotLabel.getMeasuredWidth() * 0.5;
+            jackpotLabel.regY = jackpotLabel.getMeasuredHeight() * 0.5;
+            jackpotLabel.x = 315;
+            jackpotLabel.y = 217;
+            stage.addChild(jackpotLabel);
+            //ue when game first loads)
+            spinResultZero = new createjs.Text("0", "20px Consolas", "#ff0000");
+            spinResultZero.regX = spinResultZero.getMeasuredWidth() * 0.5;
+            spinResultZero.regY = spinResultZero.getMeasuredHeight() * 0.5;
+            spinResultZero.x = 550;
+            spinResultZero.y = 495;
+            stage.addChild(spinResultZero);
         }
     }
     function resetFruitTally() {
@@ -648,14 +769,14 @@ e.g. Bar - Orange - Banana */
         stage.addChild(spinButton);
         spinButton.on("click", spinButtonClicked, this);
         //add player credits label
-        playerCreditLabel = new createjs.Text(playerCreditAmount.toString(), "20px Consolas", "#ff0000");
+        playerCreditLabel = new createjs.Text("$" + playerCreditAmount.toString() + ".00", "20px Consolas", "#ff0000");
         playerCreditLabel.regX = playerCreditLabel.getMeasuredWidth() * 0.5;
         playerCreditLabel.regY = playerCreditLabel.getMeasuredHeight() * 0.5;
         playerCreditLabel.x = 125;
         playerCreditLabel.y = 495;
         stage.addChild(playerCreditLabel);
         //add jackpot label
-        jackpotLabel = new createjs.Text("$50000.00", "25px Consolas", "#ff0000");
+        jackpotLabel = new createjs.Text("$" + jackpot.toString() + ".00", "25px Consolas", "#ff0000");
         jackpotLabel.regX = jackpotLabel.getMeasuredWidth() * 0.5;
         jackpotLabel.regY = jackpotLabel.getMeasuredHeight() * 0.5;
         jackpotLabel.x = 315;
