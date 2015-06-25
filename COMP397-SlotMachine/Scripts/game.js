@@ -34,10 +34,12 @@ var bet1;
 var bet2;
 var bet5;
 var bet10;
+var powerButton;
 var bet25;
 var bet50;
 var bet100;
 var bet500;
+var resetButton;
 var bet1Label;
 var bet2Label;
 var bet5Label;
@@ -748,6 +750,13 @@ e.g. Bar - Orange - Banana */
             stage.addChild(spinResultZero);
         }
     }
+    function resetGame() {
+        location.reload();
+    }
+    function gameOver() {
+        alert("Thanks for playing the best game.\nCome back soon.");
+        window.close();
+    }
     function resetFruitTally() {
         grapes = 0;
         bananas = 0;
@@ -828,6 +837,14 @@ e.g. Bar - Orange - Banana */
         bet500 = new objects.Button("bet500", 510, 410, false);
         stage.addChild(bet500);
         bet500.on("click", bet500ButtonClick, this);
+        //add power button
+        powerButton = new objects.Button("powerbutton", 300, 400, false);
+        stage.addChild(powerButton);
+        powerButton.on("click", gameOver, this);
+        //add reset button
+        resetButton = new objects.Button("resetbutton", 300, 300, false);
+        stage.addChild(resetButton);
+        resetButton.on("click", resetGame, this);
     }
 }
 //# sourceMappingURL=game.js.map

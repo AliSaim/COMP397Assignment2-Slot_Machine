@@ -36,8 +36,8 @@ var wheelTwoImage: objects.Images;
 var wheelThreeImage: objects.Images;
 
 //Betings buttons
-var bet1: objects.Button;  var bet2: objects.Button;  var bet5: objects.Button;   var bet10: objects.Button;
-var bet25: objects.Button; var bet50: objects.Button; var bet100: objects.Button; var bet500: objects.Button;
+var bet1: objects.Button; var bet2: objects.Button; var bet5: objects.Button; var bet10: objects.Button;        var powerButton: objects.Button;
+var bet25: objects.Button; var bet50: objects.Button; var bet100: objects.Button; var bet500: objects.Button;   var resetButton: objects.Button;
 var bet1Label: objects.Label;   var bet2Label: objects.Label;   var bet5Label: objects.Label;   var bet10Label: objects.Label;
 var bet25Label: objects.Label;  var bet50Label: objects.Label;  var bet100Label: objects.Label; var bet500Label: objects.Label;
 
@@ -724,6 +724,16 @@ e.g. Bar - Orange - Banana */
     }
 
 
+    function resetGame()
+    {
+        location.reload();
+    }
+    function gameOver()
+    {
+        alert("Thanks for playing the best game.\nCome back soon.");
+        window.close()
+    }
+
     function resetFruitTally() {
         grapes = 0;
         bananas = 0;
@@ -809,5 +819,15 @@ e.g. Bar - Orange - Banana */
         bet500 = new objects.Button("bet500", 510, 410, false);
         stage.addChild(bet500);
         bet500.on("click", bet500ButtonClick, this);
+
+        //add power button
+        powerButton = new objects.Button("powerbutton", 300, 400, false);
+        stage.addChild(powerButton);
+        powerButton.on("click", gameOver, this);
+
+        //add reset button
+        resetButton = new objects.Button("resetbutton", 300, 300, false);
+        stage.addChild(resetButton);
+        resetButton.on("click", resetGame, this);
     }
 }
