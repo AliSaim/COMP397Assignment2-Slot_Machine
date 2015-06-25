@@ -557,7 +557,7 @@ e.g. Bar - Orange - Banana */
                 stage.addChild(wheelThreeImage);
             }
             determineWinnings();
-            playerBet = 0;
+            //playerBet = 0;
             spinButtonState = false;
         }
     }
@@ -614,15 +614,17 @@ e.g. Bar - Orange - Banana */
             //playerCreditLabel = (playerCreditAmount + winnings).toString();
             //console.log("new money is: " +  (winnings + playerCreditAmount).toString());
             playerCreditAmount = playerCreditAmount + winnings;
-            alert("you won " + winnings);
+            //alert("you won " + winnings);
             console.log("you won:" + winnings.toString());
             resetFruitTally();
+            main();
         }
         else {
             //lossNumber++;
             //showLossMessage();
             resetFruitTally();
-            alert("You lose");
+            //alert("You lose");
+            main();
         }
     }
     function resetFruitTally() {
@@ -667,7 +669,7 @@ e.g. Bar - Orange - Banana */
         playerBetZero.y = 495;
         stage.addChild(playerBetZero);
         //add spin result zero(zero value when game first loads)
-        spinResultZero = new createjs.Text("$0.00", "20px Consolas", "#ff0000");
+        spinResultZero = new createjs.Text(winnings.toString(), "20px Consolas", "#ff0000");
         spinResultZero.regX = spinResultZero.getMeasuredWidth() * 0.5;
         spinResultZero.regY = spinResultZero.getMeasuredHeight() * 0.5;
         spinResultZero.x = 550;
